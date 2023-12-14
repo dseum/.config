@@ -262,6 +262,8 @@ return {
 					typescript = { "prettierd" },
 					typescriptreact = { "prettierd" },
 					svelte = { "prettierd" },
+					json = { "prettierd" },
+					jsonc = { "prettierd" },
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					conf = { "shfmt" },
