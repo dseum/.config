@@ -1,0 +1,327 @@
+{
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "window.confirmBeforeClose": "keyboardOnly",
+  "editor.copyWithSyntaxHighlighting": false,
+  "security.workspace.trust.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.emptySelectionClipboard": false,
+  "workbench.editor.enablePreview": false,
+  "window.newWindowDimensions": "inherit",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "files.trimTrailingWhitespace": true,
+  "diffEditor.renderSideBySide": false,
+  "editor.snippetSuggestions": "inline",
+  "telemetry.telemetryLevel": "off",
+  "editor.detectIndentation": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "explorer.confirmDelete": false,
+  "workbench.startupEditor": "none",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorStyle": "block",
+  "editor.formatOnSave": true,
+  "editor.glyphMargin": false,
+  "editor.wordWrap": "off",
+  "editor.wordWrapColumn": 80,
+  "workbench.sideBar.location": "right",
+  "workbench.statusBar.visible": true,
+  "workbench.editor.showIcons": false,
+  "editor.guides.indentation": false,
+  "workbench.editor.showTabs": "single",
+  "editor.minimap.enabled": false,
+  "editor.lineNumbers": "relative",
+  "editor.accessibilitySupport": "off",
+  "scm.diffDecorations": "none",
+  "editor.hover.enabled": false,
+  "editor.matchBrackets": "never",
+  "workbench.tips.enabled": false,
+  "editor.colorDecorators": false,
+  "editor.lightbulb.enabled": false,
+  "editor.selectionHighlight": false,
+  "editor.overviewRulerBorder": false,
+  "editor.renderLineHighlight": "none",
+  "editor.occurrencesHighlight": "off",
+  "problems.decorations.enabled": false,
+  "editor.renderControlCharacters": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.gotoLocation.multipleReferences": "goto",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleDeclarations": "goto",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "editor.gotoLocation.multipleImplementations": "goto",
+  "editor.gotoLocation.multipleTypeDefinitions": "goto",
+  "editor.renderWhitespace": "none",
+  "breadcrumbs.enabled": false,
+  "editor.cursorSurroundingLines": 8,
+
+  /**
+   * Visuals
+   **/
+  "workbench.colorTheme": "Tokyo Night Storm",
+  "workbench.iconTheme": "keen-neutral-icon-theme",
+  "editor.lineHeight": 19.5,
+  "terminal.integrated.lineHeight": 1.25,
+  "editor.fontFamily": "Jetbrains Mono",
+  "editor.fontSize": 13,
+  "workbench.colorCustomizations": {
+    "editorLineNumber.foreground": "#B4B4B4"
+  },
+
+  /**
+   * Search
+   **/
+  "search.useIgnoreFiles": false,
+  "search.exclude": {
+    "**/*.log": true,
+    // Web
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/out": true,
+    "**/package-lock.json": true,
+    "**/.next": true,
+    "**/.svelte-kit": true,
+    "**/.firebase": true,
+
+    // Capacitor
+    "**/ios": true,
+    "**/android": true,
+
+    // Rust
+    "**/debug": true,
+    "**/target": true
+  },
+
+  /**
+   * Vim
+   **/
+  "vim.surround": true,
+  "vim.sneak": true,
+  "vim.showmodename": false,
+  "vim.showcmd": false,
+  "vim.shell": "/bin/zsh",
+  "vim.gdefault": true,
+  "vim.ignorecase": false,
+  "vim.smartcase": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["k"], "after": ["g", "k"] },
+    { "before": ["<leader>", "y"], "after": ["\"", "*", "y"] },
+    {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
+    },
+    {
+      "before": ["n"],
+      "after": ["n", "z", "z", "z", "v"]
+    },
+    {
+      "before": ["N"],
+      "after": ["N", "z", "z", "z", "v"]
+    },
+    {
+      "before": ["K"],
+      "after": ["g", "h"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["k"], "after": ["g", "k"] },
+    // reimplement once :m pr released
+    // {
+    //   "before": ["J"],
+    //   "commands": [":m '>+1<CR>gv=gv"]
+    // },
+    // {
+    //   "before": ["K"],
+    //   "commands": [":m '<-2<CR>gv=gv"]
+    // },
+    {
+      "before": ["p"],
+      "after": ["p", "g", "v", "y"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-w>": false,
+    "<C-n>": false,
+    "<C-l>": false,
+    "<C-h>": false,
+    "<C-=>": false,
+    "<C-->": false
+  },
+
+  /**
+   * Code
+   **/
+  "emmet.includeLanguages": {
+    "svelte": "html",
+    "mjml": "html"
+  },
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.documentSelectors": ["**/*.svelte"],
+
+  /**
+   * Git
+   **/
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "always",
+  "git.decorations.enabled": false,
+
+  /**
+   * Copilot
+   **/
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "cpp": false,
+    "latex": true,
+    "python": false
+  },
+
+  /**
+   * Languages
+   **/
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  "[svelte]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "svelte.enable-ts-plugin": true,
+
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 4
+  },
+
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  "[latex]": {
+    "editor.defaultFormatter": "James-Yu.latex-workshop",
+    "editor.wordWrap": "bounded",
+    "editor.tabSize": 2
+  },
+  // "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+  "latex-workshop.latexindent.path": "/opt/homebrew/bin/latexindent",
+  "latex-workshop.latexindent.args": [
+    "-c",
+    "%DIR%/",
+    "%TMPFILE%",
+    "-y=defaultIndent: '  '"
+  ],
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.ist",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.snm",
+    "*.nav"
+  ],
+
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.defaultInterpreterPath": "python3.11",
+
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+
+  "[ocaml]": {
+    "editor.defaultFormatter": "ocamllabs.ocaml-platform"
+  },
+
+  "[mjml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.selectionHighlight": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.rulers": [80]
+  },
+  "dart.flutterHotReloadOnSave": "all",
+
+  "markdown.copyFiles.destination": {
+    "/docs/**/*": "images/${documentBaseName}/"
+  },
+  "workbench.layoutControl.enabled": false,
+  "window.commandCenter": false,
+  "workbench.activityBar.location": "hidden"
+}
