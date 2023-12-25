@@ -19,9 +19,8 @@ return {
 				textobjects = {
 					select = {
 						enable = true,
-						lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+						lookahead = true,
 						keymaps = {
-							-- You can use the capture groups defined in textobjects.scm
 							["aa"] = "@parameter.outer",
 							["ia"] = "@parameter.inner",
 							["af"] = "@function.outer",
@@ -32,7 +31,7 @@ return {
 					},
 					move = {
 						enable = true,
-						set_jumps = true, -- whether to set jumps in the jumplist
+						set_jumps = true,
 						goto_next_start = {
 							["]m"] = "@function.outer",
 							["]]"] = "@class.outer",
@@ -121,6 +120,11 @@ return {
 						},
 					},
 				},
+				sourcekit = {
+					cmd = {
+						"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+					},
+				},
 			}
 
 			require("neodev").setup()
@@ -157,49 +161,6 @@ return {
 				end,
 			})
 
-			-- local _augroups = {}
-			-- local get_augroup = function(client)
-			--     if not _augroups[client.id] then
-			--         local group_name = "lsp-format-" .. client.name
-			--         local id = vim.api.nvim_create_augroup(group_name, { clear = true })
-			--         _augroups[client.id] = id
-			--     end
-			--
-			--     return _augroups[client.id]
-			-- end
-			--
-			-- vim.api.nvim_create_autocmd("LspAttach", {
-			--     group = vim.api.nvim_create_augroup("lsp-attach-format", { clear = true }),
-			--     callback = function(args)
-			--         local client_id = args.data.client_id
-			--         local client = vim.lsp.get_client_by_id(client_id)
-			--         local bufnr = args.buf
-			--
-			--         if not client.server_capabilities.documentFormattingProvider then
-			--             return
-			--         end
-			--
-			--         if client.name == "tsserver" then
-			--             return
-			--         end
-			--
-			--         -- Create an autocmd that will run *before* we save the buffer.
-			--         --  Run the formatting command for the LSP that has just attached.
-			--         vim.api.nvim_create_autocmd("BufWritePre", {
-			--             group = get_augroup(client),
-			--             buffer = bufnr,
-			--             callback = function()
-			--                 vim.lsp.buf.format({
-			--                     async = false,
-			--                     filter = function(c)
-			--                         return c.id == client.id
-			--                     end,
-			--                 })
-			--             end,
-			--         })
-			--     end,
-			-- })
-
 			-- Completion
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
@@ -220,24 +181,6 @@ return {
 					["<CR>"] = cmp.mapping.confirm({
 						select = true,
 					}),
-					-- ["<Tab>"] = cmp.mapping(function(fallback)
-					-- 	if cmp.visible() then
-					-- 		cmp.select_next_item()
-					-- 	elseif luasnip.expand_or_locally_jumpable() then
-					-- 		luasnip.expand_or_jump()
-					-- 	else
-					-- 		fallback()
-					-- 	end
-					-- end, { "i", "s" }),
-					-- ["<S-Tab>"] = cmp.mapping(function(fallback)
-					-- 	if cmp.visible() then
-					-- 		cmp.select_prev_item()
-					-- 	elseif luasnip.locally_jumpable(-1) then
-					-- 		luasnip.jump(-1)
-					-- 	else
-					-- 		fallback()
-					-- 	end
-					-- end, { "i", "s" }),
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
@@ -255,7 +198,7 @@ return {
 			require("conform").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
-					python = { "black" },
+					python = { "autopep8" },
 					css = { "prettierd" },
 					javascript = { "prettierd" },
 					javascriptreact = { "prettierd" },
@@ -298,48 +241,6 @@ return {
 		end,
 	},
 	"github/copilot.vim",
-	-- {
-	--     "jay-babu/mason-null-ls.nvim",
-	--     dependencies = { "jose-elias-alvarez/null-ls.nvim" },
-	--     config = function()
-	--         local null_ls = require("null-ls")
-	--         local formatting = null_ls.builtins.formatting
-	--         local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-	--         null_ls.setup({
-	--             sources = {
-	--                 formatting.prettierd.with({
-	--                     extra_filetypes = { "svelte" },
-	--                 }),
-	--                 formatting.black,
-	--                 formatting.latexindent,
-	--                 formatting.rustfmt,
-	--                 formatting.beautysh,
-	--                 formatting.ocamlformat,
-	--                 formatting.clang_format,
-	--                 formatting.dart_format,
-	--             },
-	--             on_attach = function(client, bufnr)
-	--                 if client.supports_method("textDocument/formatting") then
-	--                     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-	--                     vim.api.nvim_create_autocmd("BufWritePre", {
-	--                         group = augroup,
-	--                         buffer = bufnr,
-	--                         callback = function()
-	--                             vim.lsp.buf.format({
-	--                                 filter = function(_client)
-	--                                     return _client.name ~= "tsserver"
-	--                                 end,
-	--                             })
-	--                         end,
-	--                     })
-	--                 end
-	--             end,
-	--         })
-	--         require("mason-null-ls").setup({
-	--             automatic_installation = { exclude = { "ocamlformat", "rustfmt" } },
-	--         })
-	--     end,
-	-- },
 	-- {
 	--     "dseum/delta.nvim",
 	--     dev = true,
