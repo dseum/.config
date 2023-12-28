@@ -128,29 +128,35 @@ return {
 
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup({
-				ensure_installed = vim.tbl_keys(servers),
+				automatic_installation = {
+					exclude = {},
+				},
 			})
+
 			mason_lspconfig.setup_handlers({
 				function(server_name)
 					require("lspconfig")[server_name].setup(vim.tbl_deep_extend("keep", {
 						capabilities = capabilities,
 						on_attach = function(client, bufnr)
 							client.server_capabilities.semanticTokensProvider = nil
-
-							local nmap = function(keys, func, desc)
-								if desc then
-									desc = "LSP: " .. desc
-								end
-								vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-							end
-							nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-							nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-							nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-							nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-							nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-							nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-							nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-							nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+							vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
+							vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+							vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
+							vim.keymap.set(
+								"n",
+								"gr",
+								require("telescope.builtin").lsp_references,
+								{ desc = "[G]oto [R]eferences" }
+							)
+							vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "[G]oto [I]mplementation" })
+							vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+							vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+							vim.keymap.set(
+								"n",
+								"<C-k>",
+								vim.lsp.buf.signature_help,
+								{ desc = "Signature Documentation" }
+							)
 						end,
 					}, servers[server_name]))
 				end,
@@ -189,6 +195,7 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
+		enable = false,
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {

@@ -205,4 +205,28 @@ return {
 			},
 		},
 	},
+	{
+		"echasnovski/mini.bufremove",
+		keys = {
+			{
+				"<leader>bd",
+				function()
+					local wins = vim.fn.win_findbuf(vim.api.nvim_get_current_buf())
+					if #wins > 1 then
+						require("mini.bufremove").unshow_in_window(wins[0])
+					else
+						require("mini.bufremove").delete(0, false)
+					end
+				end,
+				desc = "Close Buffer",
+			},
+			{
+				"<leader>bD",
+				function()
+					require("mini.bufremove").delete(0, true)
+				end,
+				desc = "Delete Buffer (Force)",
+			},
+		},
+	},
 }
