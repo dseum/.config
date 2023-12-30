@@ -1,7 +1,6 @@
 vim.opt.guicursor = "a:block"
 
 -- Better
-vim.opt.hidden = false
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
@@ -9,13 +8,13 @@ vim.opt.updatetime = 50
 vim.opt.showmode = false
 vim.opt.cmdheight = 0
 vim.diagnostic.config({
-	virtual_text = false,
-	underline = false,
+    virtual_text = false,
+    underline = false,
 })
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
 -- Lines
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
