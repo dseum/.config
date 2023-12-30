@@ -238,13 +238,13 @@ return {
                 end,
             },
             float = {
-                border = "single",
+                border = "solid",
             },
             preview = {
-                border = "single",
+                border = "solid",
             },
             progress = {
-                border = "single",
+                border = "solid",
             },
         },
         keys = {
@@ -252,6 +252,12 @@ return {
                 "-",
                 function()
                     require("oil").open()
+                end,
+            },
+            {
+                "_",
+                function()
+                    require("oil").open(vim.loop.cwd())
                 end,
             },
         },
