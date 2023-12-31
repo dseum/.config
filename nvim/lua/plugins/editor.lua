@@ -226,9 +226,7 @@ return {
     dev = true,
     lazy = false,
     priority = 100,
-    opts = {
-      close_window = true,
-    },
+    opts = {},
     keys = {
       {
         "<leader>ww",
@@ -240,6 +238,18 @@ return {
         "<leader>wi",
         function()
           require("window").inspect()
+        end,
+      },
+      {
+        "<C-w>s",
+        function()
+          require("window").split_win("h")
+        end,
+      },
+      {
+        "<C-w>v",
+        function()
+          require("window").split_win("v")
         end,
       },
     },

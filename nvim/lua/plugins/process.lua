@@ -143,7 +143,7 @@ return {
                 client.server_capabilities.semanticTokensProvider = nil
               end
             end,
-            on_attach = function(client, bufnr)
+            on_attach = function()
               vim.keymap.set(
                 "n",
                 "<leader>rn",
@@ -278,5 +278,5 @@ return {
     end,
   },
   "github/copilot.vim",
-  "echasnovski/mini.doc",
+  { "echasnovski/mini.doc", opts = {} },
 }
