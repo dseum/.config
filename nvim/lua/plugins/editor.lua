@@ -174,10 +174,26 @@ return {
       fold_closed = "+",
     },
     keys = {
-      { "<leader>tt", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-      { "<leader>tT", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-      { "<leader>tL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-      { "<leader>tQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+      {
+        "<leader>tt",
+        "<cmd>TroubleToggle document_diagnostics<cr>",
+        desc = "Document Diagnostics (Trouble)",
+      },
+      {
+        "<leader>tT",
+        "<cmd>TroubleToggle workspace_diagnostics<cr>",
+        desc = "Workspace Diagnostics (Trouble)",
+      },
+      {
+        "<leader>tL",
+        "<cmd>TroubleToggle loclist<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>tQ",
+        "<cmd>TroubleToggle quickfix<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
       {
         "[q",
         function()
