@@ -80,6 +80,8 @@ return {
       },
     },
     config = function()
+      require("neodev").setup()
+
       -- LSP
       local servers = {
         rust_analyzer = {},
@@ -276,4 +278,5 @@ return {
     end,
   },
   "github/copilot.vim",
+  "echasnovski/mini.doc",
 }
