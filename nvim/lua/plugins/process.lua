@@ -122,7 +122,6 @@ return {
         },
       }
 
-      require("neodev").setup()
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -137,8 +136,12 @@ return {
         function(server_name)
           require("lspconfig")[server_name].setup(vim.tbl_deep_extend("keep", {
             capabilities = capabilities,
+            on_init = function(client)
+              if client.server_capabilities then
+                client.server_capabilities.semanticTokensProvider = nil
+              end
+            end,
             on_attach = function(client, bufnr)
-              client.server_capabilities.semanticTokensProvider = nil
               vim.keymap.set(
                 "n",
                 "<leader>rn",
