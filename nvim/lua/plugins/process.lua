@@ -278,5 +278,5 @@ return {
     end,
   },
   "github/copilot.vim",
-  { "echasnovski/mini.doc", opts = {} },
+  { "echasnovski/mini.doc", enabled = false, config = true },
 }

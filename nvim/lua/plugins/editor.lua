@@ -101,6 +101,8 @@ return {
           file_ignore_patterns = {
             ".git/.*",
             "_build/.*",
+            "lazy%-lock.json",
+            "package%-lock.json",
           },
         },
         pickers = {
@@ -225,8 +227,7 @@ return {
     "dseum/window.nvim",
     dev = true,
     lazy = false,
-    priority = 100,
-    opts = {},
+    config = true,
     keys = {
       {
         "<leader>ww",
@@ -260,6 +261,7 @@ return {
     opts = {
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true,
+      cleanup_delay_ms = 0,
       view_options = {
         show_hidden = true,
         is_always_hidden = function(name)
