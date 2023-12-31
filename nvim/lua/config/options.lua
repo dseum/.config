@@ -8,8 +8,8 @@ vim.opt.updatetime = 50
 vim.opt.showmode = false
 vim.opt.cmdheight = 0
 vim.diagnostic.config({
-    virtual_text = false,
-    underline = false,
+  virtual_text = false,
+  underline = false,
 })
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 

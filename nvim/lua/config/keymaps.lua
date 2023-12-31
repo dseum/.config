@@ -34,8 +34,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- Source
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-    print("last reloaded " .. os.clock())
+  vim.cmd("so")
+  print("last reloaded " .. os.clock())
 end)
 
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
