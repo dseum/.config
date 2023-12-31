@@ -226,7 +226,9 @@ return {
     dev = true,
     lazy = false,
     priority = 100,
-    opts = {},
+    opts = {
+      close_window = true,
+    },
     keys = {
       {
         "<leader>ww",
