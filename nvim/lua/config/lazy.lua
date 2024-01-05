@@ -15,7 +15,7 @@ require("lazy").setup("plugins", {
     notify = false,
   },
   dev = {
-    path = "~/Projects/general",
+    path = "~/Projects/internal",
   },
   ui = {
     icons = {
