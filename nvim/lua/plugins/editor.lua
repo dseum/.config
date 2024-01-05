@@ -332,13 +332,13 @@ return {
         end,
       },
       float = {
-        border = "solid",
+        border = "single",
       },
       preview = {
-        border = "solid",
+        border = "single",
       },
       progress = {
-        border = "solid",
+        border = "single",
       },
     },
     keys = {
