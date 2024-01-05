@@ -54,36 +54,28 @@ return {
               0,
               { severity = vim.diagnostic.severity.ERROR }
             ),
-            symbol = vim.trim(
-              vim.fn.sign_getdefined("DiagnosticSignError")[1].text
-            ),
+            symbol = "E",
           }
           self.warn = {
             count = #vim.diagnostic.get(
               0,
               { severity = vim.diagnostic.severity.WARN }
             ),
-            symbol = vim.trim(
-              vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text
-            ),
+            symbol = "W",
           }
           self.info = {
             count = #vim.diagnostic.get(
               0,
               { severity = vim.diagnostic.severity.INFO }
             ),
-            symbol = vim.trim(
-              vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text
-            ),
+            symbol = "I",
           }
           self.hint = {
             count = #vim.diagnostic.get(
               0,
               { severity = vim.diagnostic.severity.HINT }
             ),
-            symbol = vim.trim(
-              vim.fn.sign_getdefined("DiagnosticSignHint")[1].text
-            ),
+            symbol = "H",
           }
         end,
         update = { "DiagnosticChanged", "BufEnter" },
