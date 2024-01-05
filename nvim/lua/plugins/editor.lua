@@ -130,15 +130,24 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
+      "nvim-telescope/telescope-frecency.nvim",
+    },
     keys = {
-      { "<leader>pf", "<cmd>Telescope find_files<cr>" },
-      { "<leader>pg", "<cmd>Telescope git_files<cr>" },
+      { "<leader>pf", "<cmd>Telescope frecency workspace=CWD<cr>" },
       { "<leader>ps", "<cmd>Telescope live_grep<cr>" },
     },
     config = function()
-      local with_name = function(name)
-        return {
+      require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = {
+            ".git/.*",
+            "_build/.*",
+            "lazy%-lock.json",
+            "package%-lock.json",
+          },
           borderchars = {
             { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
             prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
@@ -150,41 +159,32 @@ return {
           prompt_prefix = "— ",
           selection_caret = "— ",
           results_height = 20,
-          prompt_title = name,
           results_title = false,
           preview_title = false,
           layout_config = {
             prompt_position = "top",
           },
-        }
-      end
-      pcall(require("telescope").load_extension, "fzf")
-      require("telescope").setup({
-        defaults = {
-          file_ignore_patterns = {
-            ".git/.*",
-            "_build/.*",
-            "lazy%-lock.json",
-            "package%-lock.json",
-          },
         },
         pickers = {
-          find_files = with_name("Files"),
-          git_files = with_name("Git"),
-          live_grep = with_name("Grep"),
-          lsp_references = with_name("References"),
-          lsp_document_symbols = with_name("Document Symbols"),
-          lsp_dynamic_workspace_symbols = with_name("Workspace Symbols"),
+          live_grep = {
+            prompt_title = "Grep",
+          },
+        },
+        extensions = {
+          frecency = {
+            disable_devicons = true,
+            workspace_scan_cmd = { "fd", "-Htf" },
+          },
         },
       })
+
+      require("telescope").load_extension("fzf")
+      require("telescope").load_extension("frecency")
     end,
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
-    cond = function()
-      return vim.fn.executable("make") == 1
-    end,
   },
   {
     "mbbill/undotree",
