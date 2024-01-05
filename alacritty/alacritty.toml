@@ -5,38 +5,41 @@ decorations = "Buttonless"
 startup_mode = "Maximized"
 
 [font]
-normal = { family = "JetBrains Mono NL", style = "Regular" }
-size = 12.0
+normal = { family = "JetBrains Mono", style = "Regular" }
+bold = { family = "JetBrains Mono", style = "Bold" }
+italic = { family = "JetBrains Mono", style = "Italic" }
+bold_italic = { family = "JetBrains Mono", style = "Bold Italic" }
+size = 14.0
 offset = { x = 1, y = 1 }
 
 [colors.primary]
-background = "0x24283b"
-foreground = "0xc0caf5"
+background = "#1a1b26"
+foreground = "#c0caf5"
 
 [colors.normal]
-black = "0x1d202f"
-red = "0xf7768e"
-green = "0x9ece6a"
-yellow = "0xe0af68"
-blue = "0x7aa2f7"
-magenta = "0xbb9af7"
-cyan = "0x7dcfff"
-white = "0xa9b1d6"
+black = "#15161e"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#a9b1d6"
 
 [colors.bright]
-black = "0x414868"
-red = "0xf7768e"
-green = "0x9ece6a"
-yellow = "0xe0af68"
-blue = "0x7aa2f7"
-magenta = "0xbb9af7"
-cyan = "0x7dcfff"
-white = "0xc0caf5"
+black = "#414868"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#c0caf5"
 
 [[colors.indexed_colors]]
 index = 16
-color = "0xff9e64"
+color = "#ff9e64"
 
 [[colors.indexed_colors]]
 index = 17
-color = "0xdb4b4b"
+color = "#db4b4b"
