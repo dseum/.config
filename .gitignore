@@ -1,5 +1,7 @@
 /*
 !*.gitignore
+
+# Include
 !alacritty
 !bin
 !nvim
@@ -7,3 +9,6 @@
 !vscode
 !yabai
 !tmux
+
+# Exclude
+.DS_Store
