@@ -3,6 +3,12 @@ return {
   "tpope/vim-sleuth",
   "tpope/vim-surround",
   {
+    "echasnovski/mini.nvim",
+    config = function()
+      require("mini.pairs").setup()
+    end,
+  },
+  {
     "echasnovski/mini.comment",
     dependencies = {
       { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
