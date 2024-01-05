@@ -7,6 +7,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.showmode = false
 vim.opt.cmdheight = 0
+vim.opt.showcmd = false
 vim.diagnostic.config({
   virtual_text = false,
   underline = false,

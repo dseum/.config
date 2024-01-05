@@ -16,6 +16,15 @@ return {
           enable = true,
           additional_vim_regex_highlighting = false,
         },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<CR>",
+            node_incremental = "<CR>",
+            scope_incremental = "<S-CR>",
+            node_decremental = "<BS>",
+          },
+        },
         textobjects = {
           select = {
             enable = true,
@@ -106,7 +115,38 @@ return {
         html = {},
         jsonls = {},
         svelte = {},
-        ltex = {},
+        texlab = {
+          settings = {
+            texlab = {
+              auxDirectory = ".",
+              bibtexFormatter = "texlab",
+              build = {
+                args = {
+                  "-pdf",
+                  "-interaction=nonstopmode",
+                  "-synctex=1",
+                  "%f",
+                },
+                executable = "latexmk",
+                forwardSearchAfter = false,
+                onSave = true,
+              },
+              chktex = {
+                onEdit = false,
+                onOpenAndSave = false,
+              },
+              diagnosticsDelay = 300,
+              formatterLineLength = 80,
+              forwardSearch = {
+                args = {},
+              },
+              latexFormatter = "latexindent",
+              latexindent = {
+                modifyLineBreaks = false,
+              },
+            },
+          },
+        },
         taplo = {},
         dockerls = {},
         docker_compose_language_service = {},
@@ -214,9 +254,13 @@ return {
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"] = cmp.mapping.confirm({
-            select = true,
-          }),
+          -- ["<CR>"] = cmp.mapping(function(fallback)
+          --   if cmp.visible() then
+          --     -- cmp.confirm({ select = true })
+          --   else
+          --     fallback()
+          --   end
+          -- end),
         }),
         sources = {
           { name = "nvim_lsp" },
@@ -251,7 +295,6 @@ return {
           bash = { "shfmt" },
           dart = { "dart_format" },
           ocaml = { "ocamlformat" },
-          latex = { "latexindent" },
         },
         format_on_save = {
           timeout_ms = 1000,

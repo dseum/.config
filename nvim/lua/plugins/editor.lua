@@ -1,68 +1,132 @@
 return {
   {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = "auto",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = {
-          statusline = {
-            "TelescopePrompt",
-            "mason",
-            "lazy",
-            "netrw",
-          },
-          winbar = {},
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
-        globalstatus = true,
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-        },
-      },
-      sections = {
-        lualine_a = {
-          {
-            "filename",
-            file_status = true,
-            newfile_status = false,
-            path = 1,
-            shorting_target = 40,
-            symbols = {
-              modified = "[+]",
-              readonly = "[-]",
-              unnamed = "[U]",
-              newfile = "[N]",
-            },
-            color = nil,
-          },
-        },
-        lualine_b = {
-          "diagnostics",
-        },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {},
+    "rebelot/heirline.nvim",
+    dependencies = {
+      "folke/tokyonight.nvim",
     },
+    config = function()
+      local conditions = require("heirline.conditions")
+      local utils = require("heirline.utils")
+
+      local AlignBlock = {
+        provider = "%=",
+      }
+      local SpaceBlock = {
+        provider = " ",
+      }
+
+      local FileName = {
+        provider = function(self)
+          local filename = vim.fn.fnamemodify(self.filename, ":.")
+          if filename == "" then
+            return "[No Name]"
+          end
+          return filename
+        end,
+        hl = {
+          fg = utils.get_highlight("Directory").fg,
+          bg = utils.get_highlight("StatusLine").bg,
+        },
+      }
+      local FileNameModified = {
+        hl = function()
+          if vim.bo.modified then
+            return { fg = "cyan", force = true }
+          end
+        end,
+      }
+      local FileNameBlock = {
+        init = function(self)
+          self.filename = vim.api.nvim_buf_get_name(0)
+        end,
+      }
+      FileNameBlock = utils.insert(
+        FileNameBlock,
+        utils.insert(FileNameModified, FileName),
+        { provider = "%<" }
+      )
+
+      local DiagnosticBlock = {
+        condition = conditions.has_diagnostics,
+        init = function(self)
+          self.error = {
+            count = #vim.diagnostic.get(
+              0,
+              { severity = vim.diagnostic.severity.ERROR }
+            ),
+            symbol = vim.trim(
+              vim.fn.sign_getdefined("DiagnosticSignError")[1].text
+            ),
+          }
+          self.warn = {
+            count = #vim.diagnostic.get(
+              0,
+              { severity = vim.diagnostic.severity.WARN }
+            ),
+            symbol = vim.trim(
+              vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text
+            ),
+          }
+          self.info = {
+            count = #vim.diagnostic.get(
+              0,
+              { severity = vim.diagnostic.severity.INFO }
+            ),
+            symbol = vim.trim(
+              vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text
+            ),
+          }
+          self.hint = {
+            count = #vim.diagnostic.get(
+              0,
+              { severity = vim.diagnostic.severity.HINT }
+            ),
+            symbol = vim.trim(
+              vim.fn.sign_getdefined("DiagnosticSignHint")[1].text
+            ),
+          }
+        end,
+        update = { "DiagnosticChanged", "BufEnter" },
+        {
+          provider = function(self)
+            return self.error.symbol .. self.error.count
+          end,
+          hl = { fg = "error", bg = utils.get_highlight("StatusLine").bg },
+        },
+        SpaceBlock,
+        {
+          provider = function(self)
+            return self.warn.symbol .. self.warn.count
+          end,
+          hl = { fg = "warning", bg = utils.get_highlight("StatusLine").bg },
+        },
+        SpaceBlock,
+        {
+          provider = function(self)
+            return self.info.symbol .. self.info.count
+          end,
+          hl = { fg = "info", bg = utils.get_highlight("StatusLine").bg },
+        },
+        SpaceBlock,
+        {
+          provider = function(self)
+            return self.hint.symbol .. self.hint.count
+          end,
+          hl = { fg = "hint", bg = utils.get_highlight("StatusLine").bg },
+        },
+      }
+
+      require("heirline").setup({
+        statusline = {
+          FileNameBlock,
+          AlignBlock,
+          DiagnosticBlock,
+        },
+        opts = {
+          colors = require("tokyonight.colors").setup(),
+        },
+      })
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -227,7 +291,7 @@ return {
     "dseum/window.nvim",
     dev = true,
     lazy = false,
-    config = true,
+    opts = {},
     keys = {
       {
         "<leader>ww",
