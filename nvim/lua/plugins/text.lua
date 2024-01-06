@@ -3,10 +3,35 @@ return {
   "tpope/vim-sleuth",
   "tpope/vim-surround",
   {
-    "echasnovski/mini.nvim",
-    config = function()
-      require("mini.pairs").setup()
-    end,
+    "echasnovski/mini.pairs",
+    opts = {
+      mappings = {
+        ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\][%s]" },
+        ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\][%s]" },
+        ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\][%s]" },
+        [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\][%s]" },
+        ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\][%s]" },
+        ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\][%s]" },
+        ['"'] = {
+          action = "closeopen",
+          pair = '""',
+          neigh_pattern = "[^\\][%s]",
+          register = { cr = false },
+        },
+        ["'"] = {
+          action = "closeopen",
+          pair = "''",
+          neigh_pattern = "[^%a\\][%s]",
+          register = { cr = false },
+        },
+        ["`"] = {
+          action = "closeopen",
+          pair = "``",
+          neigh_pattern = "[^\\][%s]",
+          register = { cr = false },
+        },
+      },
+    },
   },
   {
     "echasnovski/mini.comment",
