@@ -128,8 +128,8 @@ return {
       "nvim-telescope/telescope-frecency.nvim",
     },
     keys = {
-      { "<leader>pf", "<cmd>Telescope frecency workspace=CWD<cr>" },
-      { "<leader>ps", "<cmd>Telescope live_grep<cr>" },
+      { "<Leader>pf", "<Cmd>Telescope frecency workspace=CWD<CR>" },
+      { "<Leader>ps", "<Cmd>Telescope live_grep<CR>" },
     },
     config = function()
       require("telescope").setup({
@@ -180,13 +180,13 @@ return {
   },
   {
     "mbbill/undotree",
-    keys = { { "<leader>u", vim.cmd.UndotreeToggle } },
+    keys = { { "<Leader>u", vim.cmd.UndotreeToggle } },
   },
   {
     "tpope/vim-fugitive",
     lazy = false,
     keys = {
-      { "<leader>gs", vim.cmd.Git },
+      { "<Leader>gs", vim.cmd.Git },
     },
   },
   {
@@ -202,19 +202,19 @@ return {
       on_attach = function(bufnr)
         vim.keymap.set(
           "n",
-          "<leader>gp",
+          "<Leader>gp",
           require("gitsigns").prev_hunk,
           { buffer = bufnr, desc = "[G]o to [P]revious Hunk" }
         )
         vim.keymap.set(
           "n",
-          "<leader>gn",
+          "<Leader>gn",
           require("gitsigns").next_hunk,
           { buffer = bufnr, desc = "[G]o to [N]ext Hunk" }
         )
         vim.keymap.set(
           "n",
-          "<leader>ph",
+          "<Leader>ph",
           require("gitsigns").preview_hunk,
           { buffer = bufnr, desc = "[P]review [H]unk" }
         )
@@ -232,23 +232,23 @@ return {
     },
     keys = {
       {
-        "<leader>tt",
-        "<cmd>TroubleToggle document_diagnostics<cr>",
+        "<Leader>tt",
+        "<Cmd>TroubleToggle document_diagnostics<CR>",
         desc = "Document Diagnostics (Trouble)",
       },
       {
-        "<leader>tT",
-        "<cmd>TroubleToggle workspace_diagnostics<cr>",
+        "<Leader>tT",
+        "<Cmd>TroubleToggle workspace_diagnostics<CR>",
         desc = "Workspace Diagnostics (Trouble)",
       },
       {
-        "<leader>tL",
-        "<cmd>TroubleToggle loclist<cr>",
+        "<Leader>tL",
+        "<Cmd>TroubleToggle loclist<CR>",
         desc = "Location List (Trouble)",
       },
       {
-        "<leader>tQ",
-        "<cmd>TroubleToggle quickfix<cr>",
+        "<Leader>tQ",
+        "<Cmd>TroubleToggle quickfix<CR>",
         desc = "Quickfix List (Trouble)",
       },
       {
@@ -285,13 +285,13 @@ return {
     opts = {},
     keys = {
       {
-        "<leader>ww",
+        "<Leader>ww",
         function()
           require("window").close_buf()
         end,
       },
       {
-        "<leader>wi",
+        "<Leader>wi",
         function()
           require("window").inspect()
         end,
@@ -324,13 +324,13 @@ return {
         end,
       },
       float = {
-        border = "single",
+        border = "solid",
       },
       preview = {
-        border = "single",
+        border = "solid",
       },
       progress = {
-        border = "single",
+        border = "solid",
       },
     },
     keys = {

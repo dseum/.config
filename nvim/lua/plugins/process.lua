@@ -5,7 +5,7 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })
+      require("nvim-treesitter.install").update({ with_sync = true })()
     end,
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -61,10 +61,10 @@ return {
           swap = {
             enable = true,
             swap_next = {
-              ["<leader>a"] = "@parameter.inner",
+              ["<Leader>a"] = "@parameter.inner",
             },
             swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
+              ["<Leader>A"] = "@parameter.inner",
             },
           },
         },
@@ -74,22 +74,68 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", config = true, build = ":MasonUpdate" },
-      "williamboman/mason-lspconfig.nvim",
-      "folke/neodev.nvim",
-      "nvim-telescope/telescope.nvim",
+      { "folke/neodev.nvim", config = true },
       {
         "hrsh7th/nvim-cmp",
         dependencies = {
+          "hrsh7th/cmp-nvim-lsp",
           "L3MON4D3/LuaSnip",
           "saadparwaiz1/cmp_luasnip",
-          "hrsh7th/cmp-nvim-lsp",
           "rafamadriz/friendly-snippets",
         },
       },
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
-      require("neodev").setup()
+      -- Completion
+      require("luasnip.loaders.from_vscode").lazy_load()
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0
+          and vim.api
+              .nvim_buf_get_lines(0, line - 1, line, true)[1]
+              :sub(col, col)
+              :match("%s")
+            == nil
+      end
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        }),
+      })
 
       -- LSP
       local servers = {
@@ -164,110 +210,73 @@ return {
         },
       }
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-      local mason_lspconfig = require("mason-lspconfig")
-      mason_lspconfig.setup({
-        automatic_installation = {
-          exclude = {},
-        },
-      })
-
-      mason_lspconfig.setup_handlers({
-        function(server_name)
-          require("lspconfig")[server_name].setup(vim.tbl_deep_extend("keep", {
-            capabilities = capabilities,
-            on_init = function(client)
-              if client.server_capabilities then
-                client.server_capabilities.semanticTokensProvider = nil
-              end
-            end,
-            on_attach = function()
-              vim.keymap.set(
-                "n",
-                "<leader>rn",
-                vim.lsp.buf.rename,
-                { desc = "[R]e[n]ame" }
-              )
-              vim.keymap.set(
-                "n",
-                "<leader>ca",
-                vim.lsp.buf.code_action,
-                { desc = "[C]ode [A]ction" }
-              )
-              vim.keymap.set(
-                "n",
-                "gd",
-                vim.lsp.buf.definition,
-                { desc = "[G]oto [D]efinition" }
-              )
-              vim.keymap.set(
-                "n",
-                "gr",
-                require("telescope.builtin").lsp_references,
-                { desc = "[G]oto [R]eferences" }
-              )
-              vim.keymap.set(
-                "n",
-                "gI",
-                vim.lsp.buf.implementation,
-                { desc = "[G]oto [I]mplementation" }
-              )
-              vim.keymap.set(
-                "n",
-                "gD",
-                vim.lsp.buf.declaration,
-                { desc = "[G]oto [D]eclaration" }
-              )
-              vim.keymap.set(
-                "n",
-                "K",
-                vim.lsp.buf.hover,
-                { desc = "Hover Documentation" }
-              )
-              vim.keymap.set(
-                "n",
-                "<C-k>",
-                vim.lsp.buf.signature_help,
-                { desc = "Signature Documentation" }
-              )
-            end,
-          }, servers[server_name]))
-        end,
-      })
-
-      -- Completion
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      require("luasnip.loaders.from_vscode").lazy_load()
-      luasnip.config.setup({})
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
+      require("mason").setup()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      require("mason-lspconfig").setup({
+        ensure_installed = vim.tbl_keys(servers),
+        handlers = {
+          function(server_name)
+            require("lspconfig")[server_name].setup(
+              vim.tbl_deep_extend("keep", {
+                capabilities = capabilities,
+                on_init = function(client)
+                  if client.server_capabilities then
+                    client.server_capabilities.semanticTokensProvider = nil
+                  end
+                end,
+                on_attach = function()
+                  vim.keymap.set(
+                    "n",
+                    "<Leader>rn",
+                    vim.lsp.buf.rename,
+                    { desc = "[R]e[n]ame" }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "<Leader>ca",
+                    vim.lsp.buf.code_action,
+                    { desc = "[C]ode [A]ction" }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "gd",
+                    vim.lsp.buf.definition,
+                    { desc = "[G]oto [D]efinition" }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "gr",
+                    require("telescope.builtin").lsp_references,
+                    { desc = "[G]oto [R]eferences" }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "gI",
+                    vim.lsp.buf.implementation,
+                    { desc = "[G]oto [I]mplementation" }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "gD",
+                    vim.lsp.buf.declaration,
+                    { desc = "[G]oto [D]eclaration" }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "K",
+                    vim.lsp.buf.hover,
+                    { desc = "Hover Documentation" }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "<C-k>",
+                    vim.lsp.buf.signature_help,
+                    { desc = "Signature Documentation" }
+                  )
+                end,
+              }, servers[server_name])
+            )
           end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-d>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          -- ["<CR>"] = cmp.mapping(function(fallback)
-          --   if cmp.visible() then
-          --     -- cmp.confirm({ select = true })
-          --   else
-          --     fallback()
-          --   end
-          -- end),
-        }),
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-        },
-        completion = {
-          completeopt = "menu,menuone,noinsert",
         },
       })
     end,

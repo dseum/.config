@@ -13,18 +13,18 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("x", "p", [["_dP]])
 
 -- Yank into `quoteplus` register
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<Leader>y", [["+y]])
+vim.keymap.set("n", "<Leader>Y", [["+Y]])
 
 -- Disable recording
-vim.keymap.set("n", "q", "<nop>")
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "q", "<Nop>")
+vim.keymap.set("n", "Q", "<Nop>")
 
 -- Find project
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmod<CR>")
+vim.keymap.set("n", "<C-f>", "<Cmd>silent !tmux neww tmod<CR>")
 
 -- Source
-vim.keymap.set("n", "<leader><leader>", function()
+vim.keymap.set("n", "<Leader><Leader>", function()
   vim.cmd("so")
   print("Last reloaded " .. os.clock())
 end)
