@@ -8,7 +8,7 @@ else
 		fd . ~/Projects --max-depth 2 --type d
 		fd . ~/Projects/courses --max-depth 2 --type d
 	)
-	selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -2,-1)
+	selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
 fi
 
 if [[ -z $selected_path ]]; then

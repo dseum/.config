@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 paths=$(
-	echo "$HOME/.config"
-	echo "$HOME/Projects"
+	echo "$HOME/.config/"
+	echo "$HOME/Projects/"
 	fd . ~/Projects --max-depth 1 --type d
 	fd . ~/Projects/courses --max-depth 1 --type d
 )
-selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -2,-1)
+selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
 
 if [[ -z $selected_path ]]; then
 	exit 0
