@@ -7,6 +7,7 @@ paths=$(
 	fd . ~/Projects/courses --max-depth 1 --type d
 )
 selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
+selected_path=${selected_path%/}
 
 if [[ -z $selected_path ]]; then
 	exit 0
