@@ -3,6 +3,17 @@ padding = { x = 8, y = 4 }
 dynamic_padding = true
 decorations = "Buttonless"
 startup_mode = "Maximized"
+option_as_alt = "OnlyLeft"
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Alt"
+chars = "\u001bb"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Alt"
+chars = "\u001bf"
 
 [font]
 normal = { family = "JetBrains Mono", style = "Regular" }
