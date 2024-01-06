@@ -111,15 +111,10 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
+            if cmp.visible() then
+              cmp.confirm({ select = true })
+            elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-              luasnip.jump(-1)
             else
               fallback()
             end
@@ -129,7 +124,6 @@ return {
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -328,6 +322,15 @@ return {
       })
     end,
   },
-  "github/copilot.vim",
+  {
+    "github/copilot.vim",
+    config = function()
+      vim.keymap.set("i", "<S-Tab>", [[copilot#Accept("")]], {
+        expr = true,
+        replace_keycodes = false,
+      })
+      vim.g.copilot_no_tab_map = true
+    end,
+  },
   { "echasnovski/mini.doc", enabled = false, config = true },
 }
