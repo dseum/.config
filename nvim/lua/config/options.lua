@@ -36,6 +36,3 @@ vim.opt.undofile = true
 -- Search
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
-
--- Copilot
-vim.g.copilot_no_tab_map = true

@@ -14,7 +14,8 @@ return {
         auto_install = true,
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = false,
+          disable = { "latex" },
+          additional_vim_regex_highlighting = { "latex" },
         },
         incremental_selection = {
           enable = true,
@@ -74,7 +75,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "folke/neodev.nvim", config = true },
+      { "folke/neodev.nvim", opts = {} },
       {
         "hrsh7th/nvim-cmp",
         dependencies = {
@@ -155,38 +156,6 @@ return {
         html = {},
         jsonls = {},
         svelte = {},
-        texlab = {
-          settings = {
-            texlab = {
-              auxDirectory = ".",
-              bibtexFormatter = "texlab",
-              build = {
-                args = {
-                  "-pdf",
-                  "-interaction=nonstopmode",
-                  "-synctex=1",
-                  "%f",
-                },
-                executable = "latexmk",
-                forwardSearchAfter = false,
-                onSave = true,
-              },
-              chktex = {
-                onEdit = false,
-                onOpenAndSave = false,
-              },
-              diagnosticsDelay = 300,
-              formatterLineLength = 80,
-              forwardSearch = {
-                args = {},
-              },
-              latexFormatter = "latexindent",
-              latexindent = {
-                modifyLineBreaks = false,
-              },
-            },
-          },
-        },
         taplo = {},
         dockerls = {},
         docker_compose_language_service = {},
@@ -279,6 +248,11 @@ return {
     "stevearc/conform.nvim",
     config = function()
       require("conform").setup({
+        formatters = {
+          latexindent = {
+            prepend_args = { [[-y="defaultIndent:'  '"]] },
+          },
+        },
         formatters_by_ft = {
           lua = { "stylua" },
           python = { "black" },
@@ -297,6 +271,7 @@ return {
           bash = { "shfmt" },
           dart = { "dart_format" },
           ocaml = { "ocamlformat" },
+          tex = { "latexindent" },
         },
         format_on_save = {
           timeout_ms = 1000,
@@ -324,6 +299,9 @@ return {
   },
   {
     "github/copilot.vim",
+    init = function()
+      vim.g.copilot_no_tab_map = true
+    end,
     config = function()
       vim.keymap.set("i", "<S-Tab>", [[copilot#Accept("")]], {
         expr = true,
@@ -331,5 +309,11 @@ return {
       })
     end,
   },
-  { "echasnovski/mini.doc", enabled = false, config = true },
+  {
+    "lervag/vimtex",
+    init = function()
+      vim.g.vimtex_view_method = "sioyek"
+    end,
+  },
+  { "echasnovski/mini.doc", enabled = false, opts = {} },
 }
