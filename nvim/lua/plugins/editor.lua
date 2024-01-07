@@ -282,7 +282,14 @@ return {
     "dseum/window.nvim",
     dev = true,
     lazy = false,
-    opts = {},
+    config = function()
+      require("window").setup()
+      vim.api.nvim_create_autocmd("TermClose", {
+        callback = function()
+          require("window").close_buf()
+        end,
+      })
+    end,
     keys = {
       {
         "<Leader>ww",
@@ -299,13 +306,29 @@ return {
       {
         "<C-w>s",
         function()
-          require("window").split_win("h")
+          require("window").split_win({
+            default_buffer = false,
+          })
         end,
       },
       {
         "<C-w>v",
         function()
-          require("window").split_win("v")
+          require("window").split_win({
+            orientation = "v",
+            default_buffer = false,
+          })
+        end,
+      },
+      {
+        "<Leader>T",
+        function()
+          require("window").split_win({
+            orientation = "v",
+            default_buffer = function()
+              vim.cmd.terminal()
+            end,
+          })
         end,
       },
     },

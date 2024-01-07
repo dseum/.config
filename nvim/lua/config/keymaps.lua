@@ -1,6 +1,12 @@
 vim.g.mapleader = " "
 vim.keymap.set("i", "jj", "<Esc>")
 
+-- Source
+vim.keymap.set("n", "<Leader><Leader>", function()
+  vim.cmd("so")
+  print("Last reloaded " .. os.clock())
+end)
+
 -- Cursor position
 vim.keymap.set("n", "J", "mzJ`z")
 
@@ -23,8 +29,5 @@ vim.keymap.set("n", "Q", "<Nop>")
 -- Find project
 vim.keymap.set("n", "<C-f>", "<Cmd>silent !tmux neww tmod<CR>")
 
--- Source
-vim.keymap.set("n", "<Leader><Leader>", function()
-  vim.cmd("so")
-  print("Last reloaded " .. os.clock())
-end)
+-- Terminal
+-- vim.keymap.set("i", )
