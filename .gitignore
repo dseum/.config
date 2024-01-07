@@ -9,6 +9,7 @@
 !vscode
 !yabai
 !tmux
+!sioyek
 
 # Exclude
 .DS_Store
