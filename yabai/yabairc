@@ -13,9 +13,7 @@ yabai -m config \
 	window_gap 8 \
 	layout stack
 
+yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
-yabai -m rule --add app="^Calculator$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add app="^NordVPN$" manage=off grid=4:4:1:1:2:2
-# yabai -m rule --add app="^KakaoTalk$" manage=off
 yabai -m rule --add app="^Google Drive$" manage=off
-# yabai -m rule --add app="^1Password$" manage=off
