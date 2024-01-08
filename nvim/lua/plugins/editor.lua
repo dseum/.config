@@ -286,7 +286,12 @@ return {
       require("window").setup()
       vim.api.nvim_create_autocmd("TermClose", {
         callback = function()
-          require("window").close_buf()
+          local bufnr = tonumber(vim.fn.expand("<abuf>")) --[[@as number]]
+          vim.schedule(function()
+            if vim.api.nvim_buf_is_valid(bufnr) then
+              require("window").close_buf()
+            end
+          end)
         end,
       })
     end,
