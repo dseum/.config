@@ -5,3 +5,10 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.cmd.startinsert()
   end,
 })
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.cmd.startinsert()
+    end
+  end,
+})
