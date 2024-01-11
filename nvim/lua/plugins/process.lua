@@ -130,6 +130,9 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
         }),
+        completion = {
+          completeopt = "menu,menuone,noinsert",
+        },
       })
 
       -- LSP
