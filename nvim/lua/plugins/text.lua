@@ -21,7 +21,7 @@ return {
         ["'"] = {
           action = "closeopen",
           pair = "''",
-          neigh_pattern = "[^%a%d\\'][^%a%d]",
+          neigh_pattern = "[^%a%d\\<'][^%a%d]",
           register = { cr = false },
         },
         ["`"] = {
