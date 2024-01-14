@@ -262,6 +262,7 @@ return {
           svelte = { "prettierd" },
           json = { "prettierd" },
           jsonc = { "prettierd" },
+          markdown = { "prettierd" },
           c = { "clang_format" },
           cpp = { "clang_format" },
           conf = { "shfmt" },
