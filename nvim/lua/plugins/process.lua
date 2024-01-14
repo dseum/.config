@@ -106,16 +106,11 @@ return {
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<S-Tab"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end),
-          ["<CR>"] = cmp.mapping(function(fallback)
+          ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.confirm()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
             else
               fallback()
             end
@@ -296,7 +291,18 @@ return {
       })
     end,
   },
-  "github/copilot.vim",
+  {
+    "github/copilot.vim",
+    init = function()
+      vim.g.copilot_no_tab_map = true
+    end,
+    config = function()
+      vim.keymap.set("i", "<S-Tab>", [[copilot#Accept("")]], {
+        expr = true,
+        replace_keycodes = false,
+      })
+    end,
+  },
   {
     "lervag/vimtex",
     init = function()
