@@ -135,8 +135,8 @@ return {
       require("telescope").setup({
         defaults = {
           file_ignore_patterns = {
-            ".git/.*",
-            "_build/.*",
+            ".git/*",
+            "_build/*",
             "lazy%-lock.json",
             "package%-lock.json",
           },
@@ -180,14 +180,17 @@ return {
   },
   {
     "mbbill/undotree",
-    keys = { { "<Leader>u", vim.cmd.UndotreeToggle } },
+    keys = {
+      { "<Leader>u", "<Cmd>UndotreeToggle<CR>" },
+    },
   },
   {
     "tpope/vim-fugitive",
-    lazy = false,
-    keys = {
-      { "<Leader>gs", vim.cmd.Git },
-    },
+    config = function()
+      vim.keymap.set("n", "<Leader>gs", function()
+        vim.cmd("Git")
+      end)
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -198,32 +201,12 @@ return {
         delete = { text = "_" },
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
+        untracked = { text = "┆" },
       },
-      on_attach = function(bufnr)
-        vim.keymap.set(
-          "n",
-          "<Leader>gp",
-          require("gitsigns").prev_hunk,
-          { buffer = bufnr, desc = "[G]o to [P]revious Hunk" }
-        )
-        vim.keymap.set(
-          "n",
-          "<Leader>gn",
-          require("gitsigns").next_hunk,
-          { buffer = bufnr, desc = "[G]o to [N]ext Hunk" }
-        )
-        vim.keymap.set(
-          "n",
-          "<Leader>ph",
-          require("gitsigns").preview_hunk,
-          { buffer = bufnr, desc = "[P]review [H]unk" }
-        )
-      end,
     },
   },
   {
     "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
     opts = {
       use_diagnostic_signs = true,
       icons = false,
@@ -232,58 +215,33 @@ return {
     },
     keys = {
       {
-        "<Leader>tt",
+        "<Leader>td",
         "<Cmd>TroubleToggle document_diagnostics<CR>",
         desc = "Document Diagnostics (Trouble)",
       },
       {
-        "<Leader>tT",
+        "<Leader>tw",
         "<Cmd>TroubleToggle workspace_diagnostics<CR>",
         desc = "Workspace Diagnostics (Trouble)",
       },
       {
-        "<Leader>tL",
+        "<Leader>tl",
         "<Cmd>TroubleToggle loclist<CR>",
         desc = "Location List (Trouble)",
       },
       {
-        "<Leader>tQ",
+        "<Leader>tq",
         "<Cmd>TroubleToggle quickfix<CR>",
         desc = "Quickfix List (Trouble)",
-      },
-      {
-        "[q",
-        function()
-          if require("trouble").is_open() then
-            require("trouble").previous({ skip_groups = true, jump = true })
-          else
-            local ok, err = pcall(vim.cmd.cprev)
-            if not ok then
-              vim.notify(err, vim.log.levels.ERROR)
-            end
-          end
-        end,
-        desc = "Previous trouble/quickfix item",
-      },
-      {
-        "]q",
-        function()
-          if require("trouble").is_open() then
-            require("trouble").next({ skip_groups = true, jump = true })
-          else
-            pcall(vim.cmd.cnext)
-          end
-        end,
-        desc = "Next trouble/quickfix item",
       },
     },
   },
   {
     "dseum/window.nvim",
     dev = true,
-    lazy = false,
     config = function()
-      require("window").setup()
+      local window = require("window")
+      window.setup()
       vim.api.nvim_create_autocmd("TermClose", {
         callback = function()
           local bufnr = tonumber(vim.fn.expand("<abuf>")) --[[@as number]]
@@ -294,86 +252,63 @@ return {
           end)
         end,
       })
+      vim.keymap.set("n", "<Leader>ww", function()
+        require("window").close_buf()
+      end)
+      vim.keymap.set("n", "<Leader>wi", function()
+        require("window").inspect()
+      end)
+      vim.keymap.set("n", "<C-w>s", function()
+        require("window").split_win({
+          default_buffer = false,
+        })
+      end)
+      vim.keymap.set("n", "<C-w>v", function()
+        require("window").split_win({
+          orientation = "v",
+          default_buffer = false,
+        })
+      end)
+      vim.keymap.set("n", "<Leader>T", function()
+        require("window").split_win({
+          orientation = "v",
+          default_buffer = function()
+            vim.cmd.terminal()
+          end,
+        })
+      end)
     end,
-    keys = {
-      {
-        "<Leader>ww",
-        function()
-          require("window").close_buf()
-        end,
-      },
-      {
-        "<Leader>wi",
-        function()
-          require("window").inspect()
-        end,
-      },
-      {
-        "<C-w>s",
-        function()
-          require("window").split_win({
-            default_buffer = false,
-          })
-        end,
-      },
-      {
-        "<C-w>v",
-        function()
-          require("window").split_win({
-            orientation = "v",
-            default_buffer = false,
-          })
-        end,
-      },
-      {
-        "<Leader>T",
-        function()
-          require("window").split_win({
-            orientation = "v",
-            default_buffer = function()
-              vim.cmd.terminal()
-            end,
-          })
-        end,
-      },
-    },
   },
   {
     "stevearc/oil.nvim",
-    lazy = false,
-    opts = {
-      delete_to_trash = true,
-      skip_confirm_for_simple_edits = true,
-      cleanup_delay_ms = 0,
-      view_options = {
-        show_hidden = true,
-        is_always_hidden = function(name)
-          return name == ".."
-        end,
-      },
-      float = {
-        border = "solid",
-      },
-      preview = {
-        border = "solid",
-      },
-      progress = {
-        border = "solid",
-      },
-    },
-    keys = {
-      {
-        "-",
-        function()
-          require("oil").open()
-        end,
-      },
-      {
-        "=",
-        function()
-          require("oil").open(vim.loop.cwd())
-        end,
-      },
-    },
+    config = function()
+      local oil = require("oil")
+      oil.setup({
+        delete_to_trash = true,
+        skip_confirm_for_simple_edits = true,
+        cleanup_delay_ms = 0,
+        view_options = {
+          show_hidden = true,
+          is_always_hidden = function(name)
+            return name == ".."
+          end,
+        },
+        float = {
+          border = "solid",
+        },
+        preview = {
+          border = "solid",
+        },
+        progress = {
+          border = "solid",
+        },
+      })
+      vim.keymap.set("n", "-", function()
+        oil.open()
+      end)
+      vim.keymap.set("n", "=", function()
+        oil.open(vim.loop.cwd())
+      end)
+    end,
   },
 }

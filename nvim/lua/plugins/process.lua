@@ -73,24 +73,14 @@ return {
     end,
   },
   {
-    "neovim/nvim-lspconfig",
+    "hrsh7th/nvim-cmp",
     dependencies = {
-      { "folke/neodev.nvim", opts = {} },
-      {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-          "hrsh7th/cmp-nvim-lsp",
-          "L3MON4D3/LuaSnip",
-          "saadparwaiz1/cmp_luasnip",
-          "rafamadriz/friendly-snippets",
-        },
-      },
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "nvim-telescope/telescope.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
     },
     config = function()
-      -- Completion
       require("luasnip.loaders.from_vscode").lazy_load()
       local luasnip = require("luasnip")
       local cmp = require("cmp")
@@ -124,8 +114,19 @@ return {
           completeopt = "menu,menuone,noinsert",
         },
       })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "folke/neodev.nvim",
+      "hrsh7th/nvim-cmp",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function()
+      require("neodev").setup()
 
-      -- LSP
       local servers = {
         rust_analyzer = {},
         cssls = {
@@ -183,12 +184,6 @@ return {
                 on_attach = function()
                   vim.keymap.set(
                     "n",
-                    "<Leader>rn",
-                    vim.lsp.buf.rename,
-                    { desc = "[R]e[n]ame" }
-                  )
-                  vim.keymap.set(
-                    "n",
                     "<Leader>ca",
                     vim.lsp.buf.code_action,
                     { desc = "[C]ode [A]ction" }
@@ -198,24 +193,6 @@ return {
                     "gd",
                     vim.lsp.buf.definition,
                     { desc = "[G]oto [D]efinition" }
-                  )
-                  vim.keymap.set(
-                    "n",
-                    "gr",
-                    require("telescope.builtin").lsp_references,
-                    { desc = "[G]oto [R]eferences" }
-                  )
-                  vim.keymap.set(
-                    "n",
-                    "gI",
-                    vim.lsp.buf.implementation,
-                    { desc = "[G]oto [I]mplementation" }
-                  )
-                  vim.keymap.set(
-                    "n",
-                    "gD",
-                    vim.lsp.buf.declaration,
-                    { desc = "[G]oto [D]eclaration" }
                   )
                   vim.keymap.set(
                     "n",
@@ -239,40 +216,38 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    config = function()
-      require("conform").setup({
-        formatters = {
-          latexindent = {
-            prepend_args = { [[-y="defaultIndent:'  '"]] },
-          },
+    opts = {
+      formatters = {
+        latexindent = {
+          prepend_args = { [[-y="defaultIndent:'  '"]] },
         },
-        formatters_by_ft = {
-          lua = { "stylua" },
-          python = { "black" },
-          css = { "prettierd" },
-          javascript = { "prettierd" },
-          javascriptreact = { "prettierd" },
-          typescript = { "prettierd" },
-          typescriptreact = { "prettierd" },
-          svelte = { "prettierd" },
-          json = { "prettierd" },
-          jsonc = { "prettierd" },
-          markdown = { "prettierd" },
-          c = { "clang_format" },
-          cpp = { "clang_format" },
-          conf = { "shfmt" },
-          sh = { "shfmt" },
-          bash = { "shfmt" },
-          dart = { "dart_format" },
-          ocaml = { "ocamlformat" },
-          tex = { "latexindent" },
-        },
-        format_on_save = {
-          timeout_ms = 1000,
-          lsp_fallback = true,
-        },
-      })
-    end,
+      },
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "black" },
+        css = { "prettierd" },
+        javascript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        svelte = { "prettierd" },
+        json = { "prettierd" },
+        jsonc = { "prettierd" },
+        markdown = { "prettierd" },
+        c = { "clang_format" },
+        cpp = { "clang_format" },
+        conf = { "shfmt" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
+        dart = { "dart_format" },
+        ocaml = { "ocamlformat" },
+        tex = { "latexindent" },
+      },
+      format_on_save = {
+        timeout_ms = 1000,
+        lsp_fallback = true,
+      },
+    },
   },
   {
     "mfussenegger/nvim-lint",
@@ -295,6 +270,9 @@ return {
     "github/copilot.vim",
     init = function()
       vim.g.copilot_no_tab_map = true
+      vim.g.copilot_filetypes = {
+        oil = false,
+      }
     end,
     config = function()
       vim.keymap.set("i", "<S-Tab>", [[copilot#Accept("")]], {
@@ -309,5 +287,4 @@ return {
       vim.g.vimtex_view_method = "sioyek"
     end,
   },
-  { "echasnovski/mini.doc", enabled = false, opts = {} },
 }
