@@ -125,10 +125,9 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
-      "nvim-telescope/telescope-frecency.nvim",
     },
     keys = {
-      { "<Leader>pf", "<Cmd>Telescope frecency workspace=CWD<CR>" },
+      { "<Leader>pf", "<Cmd>Telescope find_files<CR>" },
       { "<Leader>ps", "<Cmd>Telescope live_grep<CR>" },
     },
     config = function()
@@ -146,32 +145,27 @@ return {
             results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
             preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
           },
-          sorting_strategy = "ascending",
-          hidden = true,
           prompt_prefix = "— ",
           selection_caret = "— ",
-          results_height = 20,
+          sorting_strategy = "ascending",
           results_title = false,
-          preview_title = false,
           layout_config = {
             prompt_position = "top",
           },
         },
         pickers = {
+          find_files = {
+            prompt_title = "Files",
+            find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+            preview_title = false,
+          },
           live_grep = {
             prompt_title = "Grep",
-          },
-        },
-        extensions = {
-          frecency = {
-            disable_devicons = true,
-            workspace_scan_cmd = { "fd", "-Htf" },
+            preview_title = false,
           },
         },
       })
-
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("frecency")
     end,
   },
   {

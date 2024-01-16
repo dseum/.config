@@ -128,7 +128,7 @@ return {
       require("neodev").setup()
 
       local servers = {
-        rust_analyzer = {},
+        bashls = {},
         cssls = {
           settings = {
             css = {
@@ -139,24 +139,10 @@ return {
             },
           },
         },
-        tailwindcss = {},
-        tsserver = {
-          init_options = {
-            preferences = {
-              importModuleSpecifierPreference = "non-relative",
-            },
-          },
-        },
+        docker_compose_language_service = {},
+        dockerls = {},
         html = {},
         jsonls = {},
-        svelte = {},
-        taplo = {},
-        dockerls = {},
-        docker_compose_language_service = {},
-        yamlls = {},
-        pyre = {},
-        ocamllsp = {},
-        bashls = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -165,6 +151,21 @@ return {
             },
           },
         },
+        ocamllsp = {},
+        pyre = {},
+        r_language_server = {},
+        rust_analyzer = {},
+        svelte = {},
+        tailwindcss = {},
+        taplo = {},
+        tsserver = {
+          init_options = {
+            preferences = {
+              importModuleSpecifierPreference = "non-relative",
+            },
+          },
+        },
+        yamlls = {},
       }
 
       require("mason").setup()

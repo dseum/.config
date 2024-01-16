@@ -13,6 +13,8 @@ vim.diagnostic.config({
   underline = false,
 })
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Lines
 vim.opt.number = true
