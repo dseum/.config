@@ -149,6 +149,7 @@ return {
           selection_caret = "— ",
           sorting_strategy = "ascending",
           results_title = false,
+          results_height = 20,
           layout_config = {
             prompt_position = "top",
           },
@@ -156,7 +157,13 @@ return {
         pickers = {
           find_files = {
             prompt_title = "Files",
-            find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+            find_command = {
+              "fd",
+              "--type",
+              "f",
+              "--strip-cwd-prefix",
+              "--hidden",
+            },
             preview_title = false,
           },
           live_grep = {
