@@ -25,6 +25,7 @@ require("lazy").setup("plugins", {
       event = "",
       ft = "",
       init = "",
+      import = "",
       keys = "",
       plugin = "",
       runtime = "",
