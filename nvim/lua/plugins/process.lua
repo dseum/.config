@@ -122,14 +122,14 @@ return {
       "folke/neodev.nvim",
       "hrsh7th/nvim-cmp",
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
     },
     config = function()
       require("neodev").setup()
 
       local servers = {
-        bashls = {},
+        bashls = { "bash-language-server" },
         cssls = {
+          "css-lsp",
           settings = {
             css = {
               validate = true,
@@ -139,11 +139,13 @@ return {
             },
           },
         },
-        docker_compose_language_service = {},
-        dockerls = {},
-        html = {},
-        jsonls = {},
+        dafny = {},
+        docker_compose_language_service = { "docker-compose-language-server" },
+        dockerls = { "dockerfile-language-server" },
+        html = { "html-lsp" },
+        jsonls = { "json-lsp" },
         lua_ls = {
+          "lua-language-server",
           settings = {
             Lua = {
               workspace = { checkThirdParty = false },
@@ -151,68 +153,91 @@ return {
             },
           },
         },
-        ocamllsp = {},
-        pyre = {},
-        r_language_server = {},
-        rust_analyzer = {},
-        svelte = {},
-        tailwindcss = {},
-        taplo = {},
+        ocamllsp = { "ocaml-lsp" },
+        pyre = { "pyre" },
+        r_language_server = { "r-languageserver" },
+        rust_analyzer = { "rust-analyzer" },
+        svelte = { "svelte-language-server" },
+        tailwindcss = { "tailwindcss-language-server" },
+        taplo = { "taplo" },
         tsserver = {
+          "typescript-language-server",
           init_options = {
             preferences = {
               importModuleSpecifierPreference = "non-relative",
             },
           },
         },
-        yamlls = {},
+        yamlls = { "yaml-language-server" },
       }
 
       require("mason").setup()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      require("mason-lspconfig").setup({
-        ensure_installed = vim.tbl_keys(servers),
-        handlers = {
-          function(server_name)
-            require("lspconfig")[server_name].setup(
-              vim.tbl_deep_extend("keep", {
-                capabilities = capabilities,
-                on_init = function(client)
-                  if client.server_capabilities then
-                    client.server_capabilities.semanticTokensProvider = nil
-                  end
-                end,
-                on_attach = function()
-                  vim.keymap.set(
-                    "n",
-                    "<Leader>ca",
-                    vim.lsp.buf.code_action,
-                    { desc = "[C]ode [A]ction" }
-                  )
-                  vim.keymap.set(
-                    "n",
-                    "gd",
-                    vim.lsp.buf.definition,
-                    { desc = "[G]oto [D]efinition" }
-                  )
-                  vim.keymap.set(
-                    "n",
-                    "K",
-                    vim.lsp.buf.hover,
-                    { desc = "Hover Documentation" }
-                  )
-                  vim.keymap.set(
-                    "n",
-                    "<C-k>",
-                    vim.lsp.buf.signature_help,
-                    { desc = "Signature Documentation" }
-                  )
-                end,
-              }, servers[server_name])
+
+      local MasonPackage = require("mason-core.package")
+      local MasonOptional = require("mason-core.optional")
+      local MasonRegistry = require("mason-registry")
+
+      for server_id, server_setup in pairs(servers) do
+        -- Install LSP
+        local pkg_name = server_setup[1]
+        if type(pkg_name) == "string" then
+          -- Assume package is valid
+          MasonOptional.of_nilable(pkg_name)
+            :map(function(name)
+              local ok, pkg = pcall(MasonRegistry.get_package, name)
+              if ok then
+                return pkg
+              end
+            end)
+            :if_present(
+              ---@param pkg Package
+              function(pkg)
+                if not pkg:is_installed() then
+                  local _, version = MasonPackage.Parse(server_id)
+                  pkg:install({ version = version })
+                end
+              end
+            )
+          server_setup[1] = nil
+        end
+
+        -- Setup LSP
+        require("lspconfig")[server_id].setup(vim.tbl_deep_extend("keep", {
+          capabilities = capabilities,
+          on_init = function(client)
+            if client.server_capabilities then
+              client.server_capabilities.semanticTokensProvider = nil
+            end
+          end,
+          on_attach = function()
+            vim.keymap.set(
+              "n",
+              "<Leader>ca",
+              vim.lsp.buf.code_action,
+              { desc = "[C]ode [A]ction" }
+            )
+            vim.keymap.set(
+              "n",
+              "gd",
+              vim.lsp.buf.definition,
+              { desc = "[G]oto [D]efinition" }
+            )
+            vim.keymap.set(
+              "n",
+              "K",
+              vim.lsp.buf.hover,
+              { desc = "Hover Documentation" }
+            )
+            vim.keymap.set(
+              "n",
+              "<C-k>",
+              vim.lsp.buf.signature_help,
+              { desc = "Signature Documentation" }
             )
           end,
-        },
-      })
+        }, server_setup))
+      end
     end,
   },
   {
