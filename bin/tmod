@@ -4,9 +4,9 @@ if [[ $# -eq 1 ]]; then
 	selected_path=$1
 else
 	paths=$(
-		fd . ~/.config --max-depth 1 --type d
-		fd . ~/Projects --max-depth 2 --type d
-		fd . ~/Projects/courses --max-depth 2 --type d
+		fd . ~/.config --exact-depth 1 --type d
+		fd . ~/Projects --exact-depth 2 --type d
+		fd . ~/Projects/courses --exact-depth 2 --type d
 	)
 	selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
 	selected_path=${selected_path%/}
