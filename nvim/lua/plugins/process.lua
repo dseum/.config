@@ -203,40 +203,42 @@ return {
         end
 
         -- Setup LSP
-        require("lspconfig")[server_id].setup(vim.tbl_deep_extend("keep", {
-          capabilities = capabilities,
-          on_init = function(client)
-            if client.server_capabilities then
-              client.server_capabilities.semanticTokensProvider = nil
-            end
-          end,
-          on_attach = function()
-            vim.keymap.set(
-              "n",
-              "<Leader>ca",
-              vim.lsp.buf.code_action,
-              { desc = "[C]ode [A]ction" }
-            )
-            vim.keymap.set(
-              "n",
-              "gd",
-              vim.lsp.buf.definition,
-              { desc = "[G]oto [D]efinition" }
-            )
-            vim.keymap.set(
-              "n",
-              "K",
-              vim.lsp.buf.hover,
-              { desc = "Hover Documentation" }
-            )
-            vim.keymap.set(
-              "n",
-              "<C-k>",
-              vim.lsp.buf.signature_help,
-              { desc = "Signature Documentation" }
-            )
-          end,
-        }, server_setup))
+        require("lspconfig")[server_id].setup(
+          vim.tbl_deep_extend("keep", server_setup, {
+            capabilities = capabilities,
+            on_init = function(client)
+              if client.server_capabilities then
+                client.server_capabilities.semanticTokensProvider = nil
+              end
+            end,
+            on_attach = function()
+              vim.keymap.set(
+                "n",
+                "<Leader>ca",
+                vim.lsp.buf.code_action,
+                { desc = "[C]ode [A]ction" }
+              )
+              vim.keymap.set(
+                "n",
+                "gd",
+                vim.lsp.buf.definition,
+                { desc = "[G]oto [D]efinition" }
+              )
+              vim.keymap.set(
+                "n",
+                "K",
+                vim.lsp.buf.hover,
+                { desc = "Hover Documentation" }
+              )
+              vim.keymap.set(
+                "n",
+                "<C-k>",
+                vim.lsp.buf.signature_help,
+                { desc = "Signature Documentation" }
+              )
+            end,
+          })
+        )
       end
     end,
   },
