@@ -2,6 +2,9 @@ vim.filetype.add({
   extension = {
     mdx = "markdown.mdx",
   },
-  filename = {},
-  pattern = {},
+})
+vim.filetype.add({
+  extension = {
+    dfy = "dafny",
+  },
 })
