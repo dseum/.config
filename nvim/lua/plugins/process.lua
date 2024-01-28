@@ -14,15 +14,12 @@ return {
         auto_install = true,
         highlight = {
           enable = true,
-          disable = { "latex" },
-          additional_vim_regex_highlighting = { "latex" },
         },
         incremental_selection = {
           enable = true,
           keymaps = {
             init_selection = "<CR>",
             node_incremental = "<CR>",
-            scope_incremental = "<S-CR>",
             node_decremental = "<BS>",
           },
         },
@@ -39,35 +36,6 @@ return {
               ["ic"] = "@class.inner",
             },
           },
-          move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-              ["]m"] = "@function.outer",
-              ["]]"] = "@class.outer",
-            },
-            goto_next_end = {
-              ["]M"] = "@function.outer",
-              ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-              ["[m"] = "@function.outer",
-              ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-              ["[M"] = "@function.outer",
-              ["[]"] = "@class.outer",
-            },
-          },
-          swap = {
-            enable = true,
-            swap_next = {
-              ["<Leader>a"] = "@parameter.inner",
-            },
-            swap_previous = {
-              ["<Leader>A"] = "@parameter.inner",
-            },
-          },
         },
       })
     end,
@@ -81,7 +49,9 @@ return {
       "rafamadriz/friendly-snippets",
     },
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load({
+        paths = { "../snippets" },
+      })
       local luasnip = require("luasnip")
       local cmp = require("cmp")
       cmp.setup({
@@ -128,6 +98,7 @@ return {
 
       local servers = {
         bashls = { "bash-language-server" },
+        coq_lsp = {},
         cssls = {
           "css-lsp",
           settings = {
@@ -310,9 +281,9 @@ return {
     end,
   },
   {
-    "lervag/vimtex",
-    init = function()
-      vim.g.vimtex_view_method = "sioyek"
-    end,
+    "dseum/latex.nvim",
+    enabled = false,
+    dev = true,
+    opts = {},
   },
 }
