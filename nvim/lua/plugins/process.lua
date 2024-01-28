@@ -49,9 +49,11 @@ return {
       "rafamadriz/friendly-snippets",
     },
     config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_vscode").lazy_load({
-        paths = { "../snippets" },
+        paths = { "./snippets" },
       })
+
       local luasnip = require("luasnip")
       local cmp = require("cmp")
       cmp.setup({
@@ -131,6 +133,7 @@ return {
         svelte = { "svelte-language-server" },
         tailwindcss = { "tailwindcss-language-server" },
         taplo = { "taplo" },
+        texlab = { "texlab" },
         tsserver = {
           "typescript-language-server",
           init_options = {
@@ -149,9 +152,9 @@ return {
       local MasonOptional = require("mason-core.optional")
       local MasonRegistry = require("mason-registry")
 
-      for server_id, server_setup in pairs(servers) do
+      for server_id, server_config in pairs(servers) do
         -- Install LSP
-        local pkg_name = server_setup[1]
+        local pkg_name = server_config[1]
         if type(pkg_name) == "string" then
           -- Assume package is valid
           MasonOptional.of_nilable(pkg_name)
@@ -170,12 +173,12 @@ return {
                 end
               end
             )
-          server_setup[1] = nil
+          server_config[1] = nil
         end
 
         -- Setup LSP
         require("lspconfig")[server_id].setup(
-          vim.tbl_deep_extend("keep", server_setup, {
+          vim.tbl_deep_extend("keep", server_config, {
             capabilities = capabilities,
             on_init = function(client)
               if client.server_capabilities then
@@ -282,7 +285,6 @@ return {
   },
   {
     "dseum/latex.nvim",
-    enabled = false,
     dev = true,
     opts = {},
   },
