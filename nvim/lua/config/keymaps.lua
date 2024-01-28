@@ -26,8 +26,9 @@ vim.keymap.set("n", "<Leader>Y", [["+Y]])
 vim.keymap.set("n", "q", "<Nop>")
 vim.keymap.set("n", "Q", "<Nop>")
 
--- Find project
+-- Management
 vim.keymap.set("n", "<C-f>", "<Cmd>silent !tmux neww tmod<CR>")
+vim.keymap.set("n", "<C-c>", "<Cmd>silent !tmux neww tmcd<CR>")
 
 -- Terminal
 vim.keymap.set("t", "<C-w>j", "<C-\\><C-n><C-w>j")
