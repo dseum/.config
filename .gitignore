@@ -2,6 +2,7 @@
 !*.gitignore
 
 # Include
+!install.sh
 !alacritty
 !bin
 !nvim
