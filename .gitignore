@@ -1,4 +1,4 @@
-/*
+*
 !*.gitignore
 
 # Include
@@ -10,6 +10,4 @@
 !yabai
 !tmux
 !sioyek
-
-# Exclude
-.DS_Store
+!zsh
