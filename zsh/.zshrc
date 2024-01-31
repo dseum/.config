@@ -1,5 +1,4 @@
 # Environment
-export PATH="$XDG_CONFIG_HOME/bin:$PATH"
 export PATH="$HOME/.flutter/bin:$PATH"
 export PATH="$HOME/.volta/bin:$PATH"
 
