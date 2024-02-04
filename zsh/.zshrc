@@ -16,12 +16,12 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
  --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
 
 # `zsh` Prompt
-function parse_git_branch() {
-    git branch --show-current 2> /dev/null | sed "s/^\(.*\)/[\1] /"
-}
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b '
 
 setopt PROMPT_SUBST
-export PROMPT='%n@%m %1~ $(parse_git_branch)%# '
+export PROMPT='%K{white}%F{black} %n@%m %1~ ${vcs_info_msg_0_}%#%f%k%F{white}%f '
 
 # Aliases
 alias brewup="brew update && brew upgrade && brew doctor && brew cleanup"
