@@ -284,7 +284,7 @@ return {
     end,
   },
   {
-    "dseum/latex.nvim",
+    "dseum/demia.nvim",
     dev = true,
     opts = {},
   },
