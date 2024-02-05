@@ -223,6 +223,23 @@ return {
         latexindent = {
           prepend_args = { [[-y="defaultIndent:'  '"]] },
         },
+        rmd_format = {
+          command = "Rscript",
+          args = {
+            "-e",
+            [[
+              options(styler.quiet = TRUE)
+              con <- file("stdin")
+              temp <- tempfile("styler", fileext = ".Rmd")
+              writeLines(readLines(con), temp)
+              styler::style_file(temp, scope="line_breaks")
+              output <- paste0(readLines(temp), collapse = '\n')
+              cat(output)
+              close(con)
+            ]],
+          },
+          stdin = true,
+        },
       },
       formatters_by_ft = {
         lua = { "stylua" },
@@ -244,6 +261,7 @@ return {
         dart = { "dart_format" },
         ocaml = { "ocamlformat" },
         tex = { "latexindent" },
+        rmd = { "rmd_format" },
       },
       format_on_save = {
         timeout_ms = 1000,

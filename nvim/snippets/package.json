@@ -5,6 +5,10 @@
       {
         "language": "tex",
         "path": "./tex.json"
+      },
+      {
+        "language": "rmd",
+        "path": "./tex.json"
       }
     ]
   }
