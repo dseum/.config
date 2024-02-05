@@ -1,3 +1,6 @@
+# Better
+disable r
+
 # Environment
 export PATH="$HOME/.flutter/bin:$PATH"
 export PATH="$HOME/.volta/bin:$PATH"
