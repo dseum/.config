@@ -15,6 +15,7 @@ vim.diagnostic.config({
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.cursorline = true
 
 -- Lines
 vim.opt.number = true
