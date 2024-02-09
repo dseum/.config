@@ -252,24 +252,24 @@ return {
         end,
       })
       vim.keymap.set("n", "<Leader>ww", function()
-        require("window").close_buf()
+        window.close_buf()
       end)
       vim.keymap.set("n", "<Leader>wi", function()
-        require("window").inspect()
+        window.inspect()
       end)
       vim.keymap.set("n", "<C-w>s", function()
-        require("window").split_win({
+        window.split_win({
           default_buffer = false,
         })
       end)
       vim.keymap.set("n", "<C-w>v", function()
-        require("window").split_win({
+        window.split_win({
           orientation = "v",
           default_buffer = false,
         })
       end)
       vim.keymap.set("n", "<Leader>T", function()
-        require("window").split_win({
+        window.split_win({
           orientation = "v",
           default_buffer = function()
             vim.cmd.terminal()
