@@ -32,8 +32,8 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 
-[[ $SSH_CONNECTION ]] && local user='%n@%m '
-export PROMPT='%K{white}%F{black} ${user}%B%3~%b ${vcs_info_msg_0_}%#%f%k%F{white}%f '
+[[ $SSH_CONNECTION ]] && local host='@%m'
+export PROMPT='%K{white}%F{black} %n${host} %B%1~%b ${vcs_info_msg_0_}%#%f%k%F{white}%f '
 
 # Completion
 autoload -Uz compinit; compinit
