@@ -1,18 +1,3 @@
-# shift + lalt - f : yabai -m window --toggle zoom-fullscreen
-# shift + lalt - e : yabai -m space --balance
-
-# ctrl + lalt - j : yabai -m window --warp south
-# ctrl + lalt - k : yabai -m window --warp north
-# ctrl + lalt - h : yabai -m window --warp west
-# ctrl + lalt - l : yabai -m window --warp east
-
-# shift + lalt - y : yabai -m space --mirror y-axis
-# shift + lalt - x : yabai -m space --mirror x-axis
-# shift + lalt - c : yabai -m window --toggle float --grid 4:4:1:1:2:2
-
-# shift + lalt - s : yabai -m window --display west; yabai -m display --focus west;
-# shift + lalt - g : yabai -m window --display east; yabai -m display --focus east;
-#
 shift + lalt - r : yabai -m space --rotate 270
 
 shift + lalt - j : yabai -m window --swap south
