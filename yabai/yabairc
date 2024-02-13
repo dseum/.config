@@ -11,7 +11,8 @@ yabai -m config \
 	left_padding 7 \
 	right_padding 7 \
 	window_gap 8 \
-	layout stack
+	layout stack \
+	menubar_opacity 0.0
 
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
