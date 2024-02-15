@@ -16,7 +16,7 @@ zstyle ':vcs_info:git:*' formats '%b'
 
 [[ $SSH_CONNECTION ]] && local host='@%m'
 export NEWLINE=$'\n'
-export PRE_PROMPT='%F{cyan}%B%~%b %U${vcs_info_msg_0_}%u%f'
+export PRE_PROMPT='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'
 export POST_PROMPT='%K{white}%F{black} %n${host} %#%f%k%F{white}%f '
 export PROMPT="${PRE_PROMPT}${NEWLINE}${POST_PROMPT}"
 
