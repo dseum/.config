@@ -11,23 +11,21 @@ export PATH="$HOME/.volta/bin:$PATH"
 
 # Prompt
 autoload -Uz vcs_info
-precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b'
 
-[[ $SSH_CONNECTION ]] && local host='@%m'
-export NEWLINE=$'\n'
-export PRE_PROMPT='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'
-export POST_PROMPT='%K{white}%F{black} %n${host} %#%f%k%F{white}%f '
-export PROMPT="${PRE_PROMPT}${NEWLINE}${POST_PROMPT}"
-
-update-prompt() {
-    zle accept-line
-    PROMPT="${POST_PROMPT}"
-    zle reset-prompt
-    PROMPT="${PRE_PROMPT}${NEWLINE}${POST_PROMPT}"
+local preprompt='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'
+precmd() {
+    vcs_info 
+    print -rP "${preprompt}" 
+    precmd() {
+        print
+        vcs_info 
+        print -rP "${preprompt}" 
+    }
 }
-zle -N update-prompt
-bindkey "^M" update-prompt
+
+[[ $SSH_CONNECTION ]] && local host='@%m'
+export PROMPT='%K{white}%F{black} %n${host} %#%f%k%F{white}%f '
 
 # Aliases
 alias brewup="brew update && brew upgrade && brew doctor && brew cleanup"
