@@ -243,7 +243,7 @@ return {
       },
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "black" },
+        python = { "ruff_format" },
         css = { "prettierd" },
         javascript = { "prettierd" },
         javascriptreact = { "prettierd" },
@@ -278,6 +278,7 @@ return {
         typescript = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         svelte = { "eslint_d" },
+        python = { "ruff" },
       }
       vim.api.nvim_create_autocmd("BufWritePost", {
         callback = function()
