@@ -115,6 +115,7 @@ return {
         dafny = {},
         docker_compose_language_service = { "docker-compose-language-server" },
         dockerls = { "dockerfile-language-server" },
+        gopls = { "gopls" },
         html = { "html-lsp" },
         jsonls = { "json-lsp" },
         lua_ls = {
@@ -143,6 +144,7 @@ return {
           },
         },
         yamlls = { "yaml-language-server" },
+        zls = { "zls" },
       }
 
       require("mason").setup()
