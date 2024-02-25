@@ -222,6 +222,10 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters = {
+        caddyfile = {
+          command = "caddy",
+          args = { "fmt", "-" },
+        },
         latexindent = {
           prepend_args = { [[-y="defaultIndent:'  '"]] },
         },
@@ -240,12 +244,12 @@ return {
               close(con)
             ]],
           },
-          stdin = true,
         },
       },
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format" },
+        caddyfile = { "caddyfile" },
         css = { "prettierd" },
         javascript = { "prettierd" },
         javascriptreact = { "prettierd" },

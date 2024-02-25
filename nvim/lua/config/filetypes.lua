@@ -13,3 +13,8 @@ vim.filetype.add({
     v = "coq",
   },
 })
+vim.filetype.add({
+  filename = {
+    Caddyfile = "caddyfile",
+  },
+})
