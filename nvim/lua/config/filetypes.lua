@@ -8,3 +8,8 @@ vim.filetype.add({
     dfy = "dafny",
   },
 })
+vim.filetype.add({
+  extension = {
+    v = "coq",
+  },
+})
