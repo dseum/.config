@@ -151,6 +151,12 @@ return {
           layout_config = {
             prompt_position = "top",
           },
+          mappings = {
+            i = {
+              ["<C-d>"] = "results_scrolling_down",
+              ["<C-u>"] = "results_scrolling_up",
+            },
+          },
         },
         pickers = {
           find_files = {
