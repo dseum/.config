@@ -127,7 +127,7 @@ return {
             },
           },
         },
-        ocamllsp = { "ocaml-lsp" },
+        ocamllsp = {},
         pyre = { "pyre" },
         r_language_server = { "r-languageserver" },
         rust_analyzer = { "rust-analyzer" },
