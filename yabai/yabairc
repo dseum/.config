@@ -13,6 +13,10 @@ yabai -m config \
 	window_gap 8 \
 	layout stack
 
+# Events
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+# Rules
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
 yabai -m rule --add app="^NordVPN$" manage=off grid=4:4:1:1:2:2
