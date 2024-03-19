@@ -40,7 +40,7 @@ shift + lalt - m : yabai -m space --layout $(yabai -m query --spaces --space | j
 shift + lalt - 1 : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Default" --new-window
 shift + lalt - 2 : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 1" --new-window
 shift + lalt - 3 : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 6" --new-window
-shift + lalt - e : open -na /Applications/Alacritty.app
+shift + lalt - e : /Applications/Alacritty.app/Contents/MacOS/alacritty msg create-window 
 
 ctrl + lalt - q : yabai --stop-service
 ctrl + lalt - s : yabai --start-service
