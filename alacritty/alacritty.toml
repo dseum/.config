@@ -4,16 +4,7 @@ dynamic_padding = true
 decorations = "Buttonless"
 startup_mode = "Maximized"
 option_as_alt = "OnlyLeft"
-
-[[keyboard.bindings]]
-key = "B"
-mods = "Alt"
-chars = "\u001bb"
-
-[[keyboard.bindings]]
-key = "F"
-mods = "Alt"
-chars = "\u001bf"
+dynamic_title = false
 
 [font]
 normal = { family = "JetBrains Mono", style = "Regular" }
@@ -22,6 +13,9 @@ italic = { family = "JetBrains Mono", style = "Italic" }
 bold_italic = { family = "JetBrains Mono", style = "Bold Italic" }
 size = 14.0
 offset = { x = 1, y = 1 }
+
+[selection]
+save_to_clipboard = true
 
 [colors.primary]
 background = "#1a1b26"
