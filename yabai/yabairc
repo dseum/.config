@@ -19,5 +19,5 @@ yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yab
 # Rules
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
-yabai -m rule --add app="^NordVPN$" manage=off grid=4:4:1:1:2:2
+yabai -m rule --add app="^Surfshark$" manage=off
 yabai -m rule --add app="^Google Drive$" manage=off
