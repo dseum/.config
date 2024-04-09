@@ -15,19 +15,16 @@ export PATH="/Users/denniseum/Projects/external/hylo/.build/release:$PATH"
 autoload -Uz vcs_info
 zstyle ':vcs_info:git:*' formats '%b'
 
-local preprompt='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'
 precmd() {
     vcs_info 
-    print -rP "${preprompt}" 
     precmd() {
         print
         vcs_info 
-        print -rP "${preprompt}" 
     }
 }
 
 [[ $SSH_CONNECTION ]] && local host='@%m'
-export PROMPT='%K{white}%F{black} %n${host} %#%f%k%F{white}%f '
+export PROMPT='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'$'\n''%K{white}%F{black} %n${host} %#%f%k%F{white}%f '
 
 # Aliases
 alias brewup="brew update && brew upgrade && brew doctor && brew cleanup"
