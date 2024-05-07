@@ -3,7 +3,6 @@ setopt NO_CASE_GLOB
 setopt PROMPT_SUBST
 setopt AUTO_CD
 setopt CORRECT
-setopt CORRECT_ALL
 
 # Environment
 export PATH="$HOME/.flutter/bin:$PATH"
