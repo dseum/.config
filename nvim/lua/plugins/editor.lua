@@ -167,6 +167,8 @@ return {
               "f",
               "--strip-cwd-prefix",
               "--hidden",
+              "--exclude",
+              ".git",
             },
             preview_title = false,
           },
