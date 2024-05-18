@@ -2,26 +2,26 @@ return {
   "tpope/vim-sleuth",
   "tpope/vim-surround",
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    init = function()
-      vim.g.skip_ts_context_commentstring_module = true
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup({
+        indent = {
+          char = "▏",
+        },
+        scope = {
+          show_start = false,
+          show_end = false,
+        },
+      })
+      local hooks = require("ibl.hooks")
+      hooks.register(
+        hooks.type.WHITESPACE,
+        hooks.builtin.hide_first_space_indent_level
+      )
+      hooks.register(
+        hooks.type.WHITESPACE,
+        hooks.builtin.hide_first_tab_indent_level
+      )
     end,
-    opts = {
-      enable_autocmd = false,
-    },
-  },
-  {
-    "echasnovski/mini.comment",
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-    opts = {
-      options = {
-        custom_commentstring = function()
-          return require("ts_context_commentstring").calculate_commentstring()
-            or vim.bo.commentstring
-        end,
-      },
-    },
   },
 }
