@@ -2,26 +2,15 @@ return {
   "tpope/vim-sleuth",
   "tpope/vim-surround",
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "echasnovski/mini.indentscope",
     config = function()
-      require("ibl").setup({
-        indent = {
-          char = "▏",
+      require("mini.indentscope").setup({
+        draw = {
+          delay = 0,
+          animation = require("mini.indentscope").gen_animation.none(),
         },
-        scope = {
-          show_start = false,
-          show_end = false,
-        },
+        symbol = "▏",
       })
-      local hooks = require("ibl.hooks")
-      hooks.register(
-        hooks.type.WHITESPACE,
-        hooks.builtin.hide_first_space_indent_level
-      )
-      hooks.register(
-        hooks.type.WHITESPACE,
-        hooks.builtin.hide_first_tab_indent_level
-      )
     end,
   },
 }
