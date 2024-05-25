@@ -9,6 +9,9 @@ return {
           delay = 0,
           animation = require("mini.indentscope").gen_animation.none(),
         },
+        options = {
+          indent_at_cursor = false,
+        },
         symbol = "▏",
       })
     end,
