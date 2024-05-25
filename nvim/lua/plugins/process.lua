@@ -179,6 +179,7 @@ return {
         end
 
         -- Setup LSP
+        local M = {}
         require("lspconfig")[server_id].setup(
           vim.tbl_deep_extend("keep", server_config, {
             capabilities = capabilities,
@@ -187,7 +188,31 @@ return {
                 client.server_capabilities.semanticTokensProvider = nil
               end
             end,
-            on_attach = function()
+            handlers = {
+              ["experimental/serverStatus"] = function(_, result, ctx, _)
+                if
+                  client.server_capabilities.inlayHintProvider
+                  and result.quiescent
+                  and not M.ran_once
+                then
+                  for _, bufnr in
+                    ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id))
+                  do
+                    vim.lsp.inlay_hint.enable(false, {
+                      bufnr = bufnr,
+                    })
+                    vim.lsp.inlay_hint.enable(true, {
+                      bufnr = bufnr,
+                    })
+                  end
+                  M.ran_once = true
+                end
+              end,
+            },
+            on_attach = function(client, bufnr)
+              if client.server_capabilities.inlayHintProvider then
+                vim.lsp.inlay_hint.enable()
+              end
               vim.keymap.set(
                 "n",
                 "<Leader>ca",
@@ -199,12 +224,6 @@ return {
                 "gd",
                 vim.lsp.buf.definition,
                 { desc = "[G]oto [D]efinition" }
-              )
-              vim.keymap.set(
-                "n",
-                "K",
-                vim.lsp.buf.hover,
-                { desc = "Hover Documentation" }
               )
               vim.keymap.set(
                 "n",
