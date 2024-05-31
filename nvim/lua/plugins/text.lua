@@ -14,6 +14,13 @@ return {
         },
         symbol = "▏",
       })
+      vim.api.nvim_create_autocmd("BufEnter", {
+        callback = function(args)
+          if vim.bo.buftype ~= "" then
+            vim.b.miniindentscope_disable = true
+          end
+        end,
+      })
     end,
   },
 }

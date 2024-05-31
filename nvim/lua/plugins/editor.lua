@@ -212,30 +212,44 @@ return {
   {
     "folke/trouble.nvim",
     opts = {
-      use_diagnostic_signs = true,
-      icons = false,
-      fold_open = "-",
-      fold_closed = "+",
+      icons = {
+        indent = {
+          fold_open = "- ",
+          fold_closed = "+ ",
+        },
+        folder_closed = "",
+        folder_open = "",
+      },
     },
     keys = {
       {
-        "<Leader>td",
-        "<Cmd>TroubleToggle document_diagnostics<CR>",
-        desc = "Document Diagnostics (Trouble)",
+        "<leader>xp",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Project Diagnostics (Trouble)",
       },
       {
-        "<Leader>tw",
-        "<Cmd>TroubleToggle workspace_diagnostics<CR>",
-        desc = "Workspace Diagnostics (Trouble)",
+        "<leader>xb",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
       },
       {
-        "<Leader>tl",
-        "<Cmd>TroubleToggle loclist<CR>",
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
         desc = "Location List (Trouble)",
       },
       {
-        "<Leader>tq",
-        "<Cmd>TroubleToggle quickfix<CR>",
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
         desc = "Quickfix List (Trouble)",
       },
     },
