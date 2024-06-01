@@ -212,13 +212,19 @@ return {
   },
   {
     "echasnovski/mini.diff",
-    opts = {
-      view = {
-        style = "sign",
-        signs = { add = "+", change = "~", delete = "–" },
-        priority = 6,
-      },
-    },
+    config = function()
+      require("mini.diff").setup({
+        view = {
+          style = "sign",
+          signs = { add = "+", change = "~", delete = "–" },
+          priority = 6,
+        },
+      })
+      vim.keymap.set("n", "go", function()
+        local buf = vim.api.nvim_get_current_buf()
+        require("mini.diff").toggle_overlay()
+      end)
+    end,
   },
   {
     "folke/trouble.nvim",
