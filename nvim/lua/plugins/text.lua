@@ -1,6 +1,7 @@
 return {
   "tpope/vim-sleuth",
-  "tpope/vim-surround",
+  { "echasnovski/mini.surround", opts = {} },
+  { "echasnovski/mini.ai", opts = {} },
   {
     "echasnovski/mini.indentscope",
     config = function()
