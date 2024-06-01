@@ -194,7 +194,18 @@ return {
   {
     "tpope/vim-fugitive",
     config = function()
-      vim.keymap.set("n", "<Leader>gs", function()
+      vim.keymap.set("n", "gn", function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          if vim.fn.getwinvar(win, "fugitive_status") ~= "" then
+            vim.api.nvim_win_call(win, function()
+              vim.cmd.close()
+            end)
+            return
+          end
+        end
+        vim.cmd("Git")
+      end)
+      vim.keymap.set("n", "gN", function()
         vim.cmd("Git")
       end)
     end,
