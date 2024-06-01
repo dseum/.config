@@ -18,8 +18,8 @@ return {
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "<CR>",
-            node_incremental = "<CR>",
+            init_selection = "<cr>",
+            node_incremental = "<cr>",
             node_decremental = "<BS>",
           },
         },
@@ -63,12 +63,12 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-d>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<Tab>"] = cmp.mapping(function(fallback)
+          ["<c-n>"] = cmp.mapping.select_next_item(),
+          ["<c-p>"] = cmp.mapping.select_prev_item(),
+          ["<c-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<c-d>"] = cmp.mapping.scroll_docs(4),
+          ["<c-space>"] = cmp.mapping.complete(),
+          ["<tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.confirm()
             elseif luasnip.expand_or_jumpable() then
@@ -215,7 +215,7 @@ return {
               end
               vim.keymap.set(
                 "n",
-                "<Leader>ca",
+                "<leader>ca",
                 vim.lsp.buf.code_action,
                 { desc = "[C]ode [A]ction" }
               )
@@ -227,7 +227,7 @@ return {
               )
               vim.keymap.set(
                 "n",
-                "<C-k>",
+                "<c-k>",
                 vim.lsp.buf.signature_help,
                 { desc = "Signature Documentation" }
               )

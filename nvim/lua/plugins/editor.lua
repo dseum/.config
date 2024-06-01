@@ -127,8 +127,8 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
     },
     keys = {
-      { "<Leader>pf", "<Cmd>Telescope find_files<CR>" },
-      { "<Leader>ps", "<Cmd>Telescope live_grep<CR>" },
+      { "<leader>pf", "<cmd>Telescope find_files<cr>" },
+      { "<leader>ps", "<cmd>Telescope live_grep<cr>" },
     },
     config = function()
       require("telescope").setup({
@@ -153,8 +153,8 @@ return {
           },
           mappings = {
             i = {
-              ["<C-d>"] = "results_scrolling_down",
-              ["<C-u>"] = "results_scrolling_up",
+              ["<c-d>"] = "results_scrolling_down",
+              ["<c-u>"] = "results_scrolling_up",
             },
           },
         },
@@ -188,7 +188,7 @@ return {
   {
     "mbbill/undotree",
     keys = {
-      { "<Leader>u", "<Cmd>UndotreeToggle<CR>" },
+      { "<leader>u", "<cmd>UndotreeToggle<cr>" },
     },
   },
   {
@@ -287,24 +287,24 @@ return {
           end)
         end,
       })
-      vim.keymap.set("n", "<Leader>ww", function()
+      vim.keymap.set("n", "<leader>ww", function()
         window.close_buf()
       end)
-      vim.keymap.set("n", "<Leader>wi", function()
+      vim.keymap.set("n", "<leader>wi", function()
         window.inspect()
       end)
-      vim.keymap.set("n", "<C-w>s", function()
+      vim.keymap.set("n", "<c-w>s", function()
         window.split_win({
           default_buffer = false,
         })
       end)
-      vim.keymap.set("n", "<C-w>v", function()
+      vim.keymap.set("n", "<c-w>v", function()
         window.split_win({
           orientation = "v",
           default_buffer = false,
         })
       end)
-      vim.keymap.set("n", "<Leader>T", function()
+      vim.keymap.set("n", "<leader>T", function()
         window.split_win({
           orientation = "v",
           default_buffer = function()
