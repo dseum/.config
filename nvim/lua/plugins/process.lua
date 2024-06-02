@@ -91,13 +91,10 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "folke/neodev.nvim",
       "hrsh7th/nvim-cmp",
       "williamboman/mason.nvim",
     },
     config = function()
-      require("neodev").setup()
-
       local servers = {
         bashls = { "bash-language-server" },
         coq_lsp = {},
@@ -331,6 +328,11 @@ return {
   {
     "dseum/demia.nvim",
     dev = true,
+    opts = {},
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
     opts = {},
   },
 }
