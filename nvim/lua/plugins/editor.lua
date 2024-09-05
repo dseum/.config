@@ -47,7 +47,6 @@ return {
       )
 
       local DiagnosticBlock = {
-        condition = conditions.has_diagnostics,
         init = function(self)
           self.error = {
             count = #vim.diagnostic.get(

@@ -29,7 +29,7 @@ vim.keymap.set("n", "Q", "<Nop>")
 
 -- Management
 vim.keymap.set("n", "<c-f>", "<cmd>silent !tmux neww tmod<cr>")
-vim.keymap.set("n", "<c-c>", "<cmd>silent !tmux neww tmcd<cr>")
+-- vim.keymap.set("n", "<c-c>", "<cmd>silent !tmux neww tmcd<cr>")
 
 -- Terminal
 vim.keymap.set("t", "<c-w>j", "<c-\\><c-n><c-w>j")

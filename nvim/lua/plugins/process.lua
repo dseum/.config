@@ -187,11 +187,7 @@ return {
             end,
             handlers = {
               ["experimental/serverStatus"] = function(_, result, ctx, _)
-                if
-                  client.server_capabilities.inlayHintProvider
-                  and result.quiescent
-                  and not M.ran_once
-                then
+                if result.quiescent and not M.ran_once then
                   for _, bufnr in
                     ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id))
                   do
@@ -208,7 +204,9 @@ return {
             },
             on_attach = function(client, bufnr)
               if client.server_capabilities.inlayHintProvider then
-                vim.lsp.inlay_hint.enable()
+                vim.lsp.inlay_hint.enable(true, {
+                  bufnr = bufnr,
+                })
               end
               vim.keymap.set(
                 "n",
@@ -227,6 +225,12 @@ return {
                 "<c-k>",
                 vim.lsp.buf.signature_help,
                 { desc = "Signature Documentation" }
+              )
+              vim.keymap.set(
+                "n",
+                "K",
+                vim.lsp.buf.hover,
+                { desc = "Hover Documentation" }
               )
             end,
           })
@@ -285,30 +289,13 @@ return {
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },
         rust = { "rustfmt" },
+        yaml = { "prettierd" },
       },
       format_on_save = {
         timeout_ms = 1000,
         lsp_fallback = true,
       },
     },
-  },
-  {
-    "mfussenegger/nvim-lint",
-    config = function()
-      require("lint").linters_by_ft = {
-        javascript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescript = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
-        svelte = { "eslint_d" },
-        python = { "ruff" },
-      }
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        callback = function()
-          require("lint").try_lint()
-        end,
-      })
-    end,
   },
   {
     "github/copilot.vim",
