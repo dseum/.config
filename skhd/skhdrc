@@ -33,7 +33,7 @@ lalt - 5 : "${HOME}"/.config/skhd/scripts/effect 5
 lalt - q : "${HOME}"/.config/skhd/scripts/effect 6
 lalt - w : "${HOME}"/.config/skhd/scripts/effect 7
 lalt - e : "${HOME}"/.config/skhd/scripts/effect 8
-lalt - r : yabai -m space --focus 9
+lalt - r : "${HOME}"/.config/skhd/scripts/effect 9
 
 shift + lalt - m : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" elif .type == "bsp" then "float" else "stack" end')
 
