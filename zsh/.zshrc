@@ -8,6 +8,7 @@ setopt CORRECT
 export PATH="$HOME/.flutter/bin:$PATH"
 export PATH="$HOME/.volta/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="$HOME/.go/bin:$PATH"
 
 # Prompt
 autoload -Uz vcs_info
