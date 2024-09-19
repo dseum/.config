@@ -132,7 +132,7 @@ return {
         tailwindcss = { "tailwindcss-language-server" },
         taplo = { "taplo" },
         texlab = { "texlab" },
-        tsserver = {
+        ts_ls = {
           "typescript-language-server",
           init_options = {
             preferences = {
