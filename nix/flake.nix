@@ -26,7 +26,6 @@
           environment.systemPackages = [
             pkgs.fd
             pkgs.fzf
-            pkgs.mkalias
             pkgs.neovim
             pkgs.nixfmt-rfc-style
             pkgs.ripgrep
