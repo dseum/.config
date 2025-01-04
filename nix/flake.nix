@@ -88,6 +88,8 @@
           };
           programs.zsh = {
             enable = true;
+            enableGlobalCompInit = true;
+            enableBashCompletion = true;
             variables = {
               XDG_CONFIG_HOME = "$HOME/.config";
               XDG_CACHE_HOME = "$HOME/.cache";

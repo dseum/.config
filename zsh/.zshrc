@@ -34,8 +34,7 @@ alias tmls="tmux ls"
 alias fasrc="ssh deum@login.rc.fas.harvard.edu"
 alias rebuild="darwin-rebuild switch --flake $XDG_CONFIG_HOME/nix#main"
 
-# Completions
-autoload -Uz compinit; compinit
+# opam
 [[ ! -r /Users/denniseum/.opam/opam-init/init.zsh ]] || source /Users/denniseum/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # fzf
