@@ -26,14 +26,19 @@
           environment.systemPackages = [
             pkgs.fd
             pkgs.fzf
-            pkgs.neovim
+            (pkgs.neovim.override {
+              viAlias = true;
+            })
             pkgs.nixfmt-rfc-style
+            pkgs.python313
             pkgs.ripgrep
             pkgs.skhd
             pkgs.slack
             pkgs.spotify
             pkgs.texliveFull
             pkgs.tmux
+            pkgs.uv
+            pkgs.volta
             pkgs.vscode
             pkgs.yabai
           ];
