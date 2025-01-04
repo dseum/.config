@@ -158,7 +158,11 @@
                 ShowStatusBar = false;
               };
               loginwindow.GuestEnabled = false;
-              WindowManager.GloballyEnabled = false;
+              WindowManager = {
+                EnableStandardClickToShowDesktop = false;
+                GloballyEnabled = false;
+                StandardHideDesktopIcons = false;
+              };
             };
             keyboard = {
               enableKeyMapping = true;
