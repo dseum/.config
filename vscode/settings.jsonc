@@ -38,7 +38,7 @@
   "editor.matchBrackets": "never",
   "workbench.tips.enabled": false,
   "editor.colorDecorators": false,
-  "editor.lightbulb.enabled": false,
+  "editor.lightbulb.enabled": "off",
   "editor.selectionHighlight": false,
   "editor.overviewRulerBorder": false,
   "editor.renderLineHighlight": "none",
@@ -59,7 +59,7 @@
   /**
    * Visuals
    **/
-  "workbench.colorTheme": "Tokyo Night Storm",
+  "workbench.colorTheme": "Tokyo Night",
   "workbench.iconTheme": "keen-neutral-icon-theme",
   "editor.lineHeight": 19.5,
   "terminal.integrated.lineHeight": 1.25,
@@ -250,14 +250,6 @@
     "editor.wordWrap": "bounded",
     "editor.tabSize": 2
   },
-  // "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
-  "latex-workshop.latexindent.path": "/opt/homebrew/bin/latexindent",
-  "latex-workshop.latexindent.args": [
-    "-c",
-    "%DIR%/",
-    "%TMPFILE%",
-    "-y=defaultIndent: '  '"
-  ],
   "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.latex.autoBuild.run": "onFileChange",
