@@ -24,8 +24,10 @@
         in
         {
           environment.systemPackages = [
+            pkgs.appcleaner
             pkgs.fd
             pkgs.fzf
+            pkgs.google-chrome
             (pkgs.neovim.override {
               viAlias = true;
             })
@@ -41,6 +43,7 @@
             pkgs.volta
             pkgs.vscode
             pkgs.yabai
+            pkgs.zoom-us
           ];
           fonts.packages = [
             pkgs.jetbrains-mono
@@ -48,10 +51,12 @@
           homebrew = {
             enable = true;
             casks = [
+              "1password"
               "ghostty"
             ];
             masApps = {
               "Goodnotes 6" = 1444383602;
+              "KakaoTalk" = 869223134;
               "Messenger" = 1480068668;
               "SurfShark" = 1437809329;
               "WhatsApp" = 310633997;
@@ -127,7 +132,7 @@
               dock = {
                 autohide = true;
                 persistent-apps = [
-                  "/Applications/Google Chrome.app"
+                  "/Applications/Nix Apps/Google Chrome.app"
                   "/System/Applications/Mail.app"
                   "/System/Applications/Calendar.app"
                   "/System/Applications/Reminders.app"
@@ -137,6 +142,7 @@
                   "/Applications/Nix Apps/Slack.app"
                   "/Applications/WhatsApp.app"
                   "/Applications/Messenger.app"
+                  "/Applications/KakaoTalk.app"
                   "/System/Applications/System Settings.app"
                 ];
                 show-recents = false;
