@@ -86,6 +86,16 @@
             computer = 20;
             display = 15;
           };
+          programs.zsh = {
+            enable = true;
+            variables = {
+              XDG_CONFIG_HOME = "$HOME/.config";
+              XDG_CACHE_HOME = "$HOME/.cache";
+              ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
+              EDITOR = "nvim";
+              VISUAL = "nvim";
+            };
+          };
           services = {
             skhd.enable = true;
             yabai = {
