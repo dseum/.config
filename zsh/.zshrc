@@ -5,15 +5,12 @@ setopt AUTO_CD
 setopt CORRECT
 
 # Homes
-export VOLTA_HOME="$HOME/.volta"
 export PNPM_HOME="$HOME/Library/pnpm"
 
 # Path
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="$HOME/.flutter/bin:$PATH"
-export PATH="$HOME/.volta/bin:$PATH"
 export PATH="$HOME/.go/bin:$PATH"
-export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$PNPM_HOME:$PATH"
 
 # Prompt
@@ -53,9 +50,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
  --color=fg+:#c0caf5,bg+:#1a1b26,hl+:#c0caf5
  --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
  --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
-
-# uv
-. "$HOME/.local/bin/env"
 
 # cargo
 . "$HOME/.cargo/env"
