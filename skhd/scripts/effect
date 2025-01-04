@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	exit 1
+else
+	index="$1"
+fi
+
+current=$(yabai -m query --spaces --space | jq -r '.index')
+if [[ $current -eq $index ]]; then
+	type=$(yabai -m query --spaces --space "$index" | jq -r '.type')
+	if [[ $type != "stack" ]]; then
+		exit 0
+	fi
+	yabai -m window --focus stack.next || yabai -m window --focus stack.first
+else
+	yabai -m space --focus "$index"
+fi

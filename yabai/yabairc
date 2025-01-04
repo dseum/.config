@@ -1,0 +1,23 @@
+# Script
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# Config
+yabai -m config \
+    mouse_follows_focus on \
+    window_placement second_child \
+    top_padding 7 \
+    bottom_padding 7 \
+    left_padding 7 \
+    right_padding 7 \
+    window_gap 8 \
+    layout stack
+
+# Events
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+# Rules
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off grid=4:4:1:1:2:2
+yabai -m rule --add app="^Surfshark$" manage=off grid=4:4:1:1:2:2
+yabai -m rule --add app="^Google Drive$" manage=off

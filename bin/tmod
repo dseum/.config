@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 1 ]]; then
+	selected_path=$1
+else
+	paths=$(
+		fd . ~/.config --exact-depth 1 --type d
+		fd . ~/Projects --exact-depth 2 --type d
+		fd . ~/Projects/courses --exact-depth 2 --type d
+		fd . ~/Projects/orgs --exact-depth 2 --type d
+	)
+	selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
+	selected_path=${selected_path%/}
+fi
+
+if [[ -z $selected_path ]]; then
+	exit 0
+fi
+
+selected_name=$(basename "$selected_path" | tr . - | tr ' ' - | tr [:upper:] [:lower:])
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+	tmux new-session -s $selected_name -c "$selected_path" -e "RWD=$selected_path"
+	exit 0
+fi
+
+if ! tmux has-session -t $selected_name 2>/dev/null; then
+	tmux new-session -ds $selected_name -c "$selected_path" -e "RWD=$selected_path"
+fi
+
+if [[ -z $TMUX ]]; then
+	tmux attach -t $selected_name
+else
+	tmux switch-client -t $selected_name
+fi

@@ -1,0 +1,6 @@
+/*
+!.gitignore
+
+# Include
+!.zshenv
+!.zshrc
