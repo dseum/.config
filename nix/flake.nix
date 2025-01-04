@@ -122,8 +122,8 @@
                     cp "$icns_src" "$icns_tgt"
                   fi
                 done
-                rm -rf /Library/Caches/com.apple.iconservices.store
-                find /private/var/folders/ \( -name com.apple.dock.iconcache -or -name com.apple.iconservices \) -exec rm -rf {} \;
+                rm -rf /Library/Caches/com.apple.iconservices.store 2>/dev/null
+                find /private/var/folders/ \( -name com.apple.dock.iconcache -or -name com.apple.iconservices \) -exec rm -rf {} \; 2>/dev/null
                 killall Finder
                 killall Dock
               '';
