@@ -4,14 +4,12 @@ setopt PROMPT_SUBST
 setopt AUTO_CD
 setopt CORRECT
 
-# Homes
-export PNPM_HOME="$HOME/Library/pnpm"
+# Variables
+export VOLTA_HOME="$HOME/.volta"
 
 # Path
 export PATH="$HOME/.config/bin:$PATH"
-export PATH="$HOME/.flutter/bin:$PATH"
-export PATH="$HOME/.go/bin:$PATH"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Prompt
 autoload -Uz vcs_info
@@ -52,6 +50,3 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # cargo
 . "$HOME/.cargo/env"
-
-# OrbStack
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
