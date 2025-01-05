@@ -98,6 +98,7 @@
               VISUAL = "nvim";
             };
           };
+          security.pam.enableSudoTouchIdAuth = true;
           services = {
             skhd.enable = true;
             yabai = {
