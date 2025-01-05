@@ -27,6 +27,7 @@
             pkgs.appcleaner
             pkgs.fd
             pkgs.fzf
+            pkgs.go
             pkgs.google-chrome
             (pkgs.neovim.override {
               viAlias = true;
