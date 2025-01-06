@@ -159,9 +159,9 @@
                   "/Applications/Ghostty.app"
                   "/Applications/Nix Apps/Visual Studio Code.app"
                   "/Applications/Nix Apps/Slack.app"
+                  "/Applications/KakaoTalk.app"
                   "/Applications/WhatsApp.app"
                   "/Applications/Messenger.app"
-                  "/Applications/KakaoTalk.app"
                   "/System/Applications/System Settings.app"
                 ];
                 show-recents = false;
