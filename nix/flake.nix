@@ -23,29 +23,34 @@
           };
         in
         {
-          environment.systemPackages = [
-            pkgs.appcleaner
-            pkgs.fd
-            pkgs.fzf
-            pkgs.go
-            pkgs.google-chrome
-            (pkgs.neovim.override {
-              viAlias = true;
-            })
-            pkgs.nixfmt-rfc-style
-            pkgs.python313
-            pkgs.ripgrep
-            pkgs.skhd
-            pkgs.slack
-            pkgs.spotify
-            pkgs.texliveFull
-            pkgs.tmux
-            pkgs.uv
-            pkgs.volta
-            pkgs.vscode
-            pkgs.yabai
-            pkgs.zoom-us
-          ];
+          environment = {
+            etc."pam.d/sudo_local".text = ''
+              auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
+              auth       sufficient     pam_tid.so
+            '';
+            systemPackages = [
+              pkgs.appcleaner
+              pkgs.fd
+              pkgs.fzf
+              pkgs.go
+              pkgs.google-chrome
+              (pkgs.neovim.override {
+                viAlias = true;
+              })
+              pkgs.nixfmt-rfc-style
+              pkgs.pam-reattach
+              pkgs.python313
+              pkgs.ripgrep
+              pkgs.slack
+              pkgs.spotify
+              pkgs.texliveFull
+              pkgs.tmux
+              pkgs.uv
+              pkgs.volta
+              pkgs.vscode
+              pkgs.zoom-us
+            ];
+          };
           fonts.packages = [
             pkgs.jetbrains-mono
           ];
@@ -99,7 +104,6 @@
               VISUAL = "nvim";
             };
           };
-          security.pam.enableSudoTouchIdAuth = true;
           services = {
             skhd.enable = true;
             yabai = {
