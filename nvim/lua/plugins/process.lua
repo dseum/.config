@@ -41,57 +41,46 @@ return {
     end,
   },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
+    "saghen/blink.cmp",
+    dependenices = {
       "rafamadriz/friendly-snippets",
     },
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load({
-        paths = { "./snippets" },
-      })
-
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
+    version = "0.9.2",
+    opts = {
+      completion = {
+        list = { selection = "preselect" },
+        menu = {
+          auto_show = true,
+          draw = {
+            columns = {
+              { "label", "label_description", gap = 1 },
+              { "kind" },
+            },
+          },
         },
-        mapping = cmp.mapping.preset.insert({
-          ["<c-n>"] = cmp.mapping.select_next_item(),
-          ["<c-p>"] = cmp.mapping.select_prev_item(),
-          ["<c-u>"] = cmp.mapping.scroll_docs(-4),
-          ["<c-d>"] = cmp.mapping.scroll_docs(4),
-          ["<c-space>"] = cmp.mapping.complete(),
-          ["<tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.confirm()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-        }),
-        completion = {
-          completeopt = "menu,menuone,noinsert",
+        documentation = { auto_show = true, auto_show_delay_ms = 0 },
+      },
+      keymap = {
+        preset = "none",
+        ["<c-p>"] = { "select_prev", "fallback" },
+        ["<c-n>"] = { "select_next", "fallback" },
+        ["<c-u>"] = { "scroll_documentation_down", "fallback" },
+        ["<c-d>"] = { "scroll_documentation_up", "fallback" },
+        ["<c-space>"] = {
+          "show",
+          "hide",
         },
-      })
-    end,
+        ["<tab>"] = {
+          "accept",
+          "fallback",
+        },
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "hrsh7th/nvim-cmp",
+      "saghen/blink.cmp",
       "williamboman/mason.nvim",
     },
     config = function()
@@ -146,8 +135,6 @@ return {
       }
 
       require("mason").setup()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
       local MasonPackage = require("mason-core.package")
       local MasonOptional = require("mason-core.optional")
       local MasonRegistry = require("mason-registry")
@@ -180,7 +167,9 @@ return {
         local M = {}
         require("lspconfig")[server_id].setup(
           vim.tbl_deep_extend("keep", server_config, {
-            capabilities = capabilities,
+            capabilities = require("blink.cmp").get_lsp_capabilities(
+              server_config.capabilities
+            ),
             on_init = function(client)
               if client.server_capabilities then
                 client.server_capabilities.semanticTokensProvider = nil
