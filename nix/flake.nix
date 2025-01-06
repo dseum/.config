@@ -59,6 +59,7 @@
             casks = [
               "1password"
               "ghostty"
+              "orbstack"
             ];
             masApps = {
               "Goodnotes 6" = 1444383602;
