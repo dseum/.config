@@ -43,6 +43,7 @@
               pkgs.ripgrep
               pkgs.slack
               pkgs.spotify
+              pkgs.sqlc
               pkgs.tex-fmt
               pkgs.texliveFull
               pkgs.tmux
