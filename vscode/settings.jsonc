@@ -1,5 +1,5 @@
 {
-  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
   "terminal.integrated.defaultProfile.osx": "zsh",
   "window.confirmBeforeClose": "keyboardOnly",
@@ -252,6 +252,7 @@
   },
   "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
   "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.formatting.latex": "tex-fmt",
   "latex-workshop.latex.autoBuild.run": "onFileChange",
   "latex-workshop.latex.autoClean.run": "onBuilt",
   "latex-workshop.latex.clean.fileTypes": [
