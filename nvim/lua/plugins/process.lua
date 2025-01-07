@@ -50,7 +50,9 @@ return {
       completion = {
         list = { selection = "preselect" },
         menu = {
-          auto_show = true,
+          auto_show = function(ctx)
+            return ctx.mode ~= "cmdline"
+          end,
           draw = {
             columns = {
               { "label", "label_description", gap = 1 },
