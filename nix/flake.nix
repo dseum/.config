@@ -30,6 +30,8 @@
             '';
             systemPackages = [
               pkgs.appcleaner
+              pkgs.buf
+              pkgs.cocoapods
               pkgs.fd
               pkgs.fzf
               pkgs.go
@@ -60,6 +62,7 @@
             enable = true;
             casks = [
               "1password"
+              "flutter"
               "ghostty"
               "orbstack"
             ];
