@@ -45,10 +45,10 @@ return {
     dependenices = {
       "rafamadriz/friendly-snippets",
     },
-    version = "0.9.2",
+    version = "0.10.0",
     opts = {
       completion = {
-        list = { selection = "preselect" },
+        list = { selection = { preselect = true, auto_insert = false } },
         menu = {
           auto_show = function(ctx)
             return ctx.mode ~= "cmdline"
