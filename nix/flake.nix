@@ -28,6 +28,9 @@
               auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
               auth       sufficient     pam_tid.so
             '';
+            shells = [
+              pkgs.zsh
+            ];
             systemPackages = [
               pkgs.appcleaner
               pkgs.buf
@@ -36,9 +39,7 @@
               pkgs.fzf
               pkgs.go
               pkgs.google-chrome
-              (pkgs.neovim.override {
-                viAlias = true;
-              })
+              pkgs.neovim
               pkgs.nixfmt-rfc-style
               pkgs.pam-reattach
               pkgs.python313
@@ -103,13 +104,14 @@
             enable = true;
             enableGlobalCompInit = true;
             enableBashCompletion = true;
-            variables = {
-              XDG_CONFIG_HOME = "$HOME/.config";
-              XDG_CACHE_HOME = "$HOME/.cache";
-              ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
-              EDITOR = "nvim";
-              VISUAL = "nvim";
-            };
+            shellInit = ''
+              export XDG_CACHE_HOME="$HOME/.cache"
+              export XDG_CONFIG_HOME="$HOME/.config"
+              export XDG_DATA_HOME="$HOME/.local/share"
+              export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+              export EDITOR="nvim"
+              export VISUAL="nvim"
+            '';
           };
           services = {
             skhd.enable = true;
