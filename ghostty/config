@@ -39,3 +39,5 @@ macos-window-shadow = false
 
 auto-update = download
 clipboard-paste-protection = false
+
+keybind = global:opt+grave_accent=toggle_quick_terminal
