@@ -50,6 +50,7 @@
               pkgs.texliveFull
               pkgs.tmux
               pkgs.uv
+              pkgs.vimgolf
               pkgs.volta
               pkgs.vscode
               pkgs.zoom-us
