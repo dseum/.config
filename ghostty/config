@@ -34,7 +34,6 @@ window-padding-x = 8
 window-padding-y = 3
 window-padding-balance = true
 confirm-close-surface = false
-quit-after-last-window-closed = true
 macos-window-shadow = false
 
 auto-update = download
