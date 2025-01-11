@@ -39,7 +39,10 @@
               pkgs.fzf
               pkgs.go
               pkgs.google-chrome
-              pkgs.neovim
+              (pkgs.neovim.override {
+                viAlias = true;
+                vimAlias = true;
+              })
               pkgs.nixfmt-rfc-style
               pkgs.pam-reattach
               pkgs.python313
@@ -111,6 +114,7 @@
               export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
               export EDITOR="nvim"
               export VISUAL="nvim"
+              export HOMEBREW_NO_ENV_HINTS=1
             '';
           };
           services = {
@@ -144,7 +148,6 @@
                   # Replaces icons if replacement exist
                   icns_src="${paths.config}/icons/$app_name.icns"
                   if [ -f "$icns_src" ]; then
-                    echo "copying icon for $app_name" >&2
                     icns_tgt=$(find "$dir/$app_name.app/Contents/Resources" -name "*.icns")
                     cp "$icns_src" "$icns_tgt"
                   fi
