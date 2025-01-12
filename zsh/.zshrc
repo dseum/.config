@@ -18,22 +18,17 @@ zstyle ':vcs_info:git:*' formats '%b'
 precmd() {
     vcs_info 
     precmd() {
-        print
+        echo
         vcs_info 
     }
 }
-
-[[ $SSH_CONNECTION ]] && local host='@%m'
-export PROMPT='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'$'\n''%K{white}%F{black} %n${host} %#%f%k%F{white}%f '
+export PROMPT='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'$'\n''%K{white}%F{black} %n %#%f%k%F{white}%f '
 
 # Aliases
 alias tmat="tmux attach"
 alias tmls="tmux ls"
 alias fasrc="ssh deum@login.rc.fas.harvard.edu"
 alias rebuild="darwin-rebuild switch --flake $XDG_CONFIG_HOME/nix#main"
-
-# opam
-[[ ! -r /Users/denniseum/.opam/opam-init/init.zsh ]] || source /Users/denniseum/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type file"
@@ -47,6 +42,3 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
  --color=fg+:#c0caf5,bg+:#1a1b26,hl+:#c0caf5
  --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
  --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
-
-# cargo
-. "$HOME/.cargo/env"
