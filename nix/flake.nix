@@ -44,9 +44,11 @@
                 vimAlias = true;
               })
               pkgs.nixfmt-rfc-style
+              pkgs.opam
               pkgs.pam-reattach
               pkgs.python313
               pkgs.ripgrep
+              pkgs.rustup
               pkgs.slack
               pkgs.spotify
               pkgs.sqlc
@@ -114,7 +116,6 @@
               export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
               export EDITOR="nvim"
               export VISUAL="nvim"
-              export HOMEBREW_NO_ENV_HINTS=1
             '';
           };
           services = {
