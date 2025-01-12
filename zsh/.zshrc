@@ -28,7 +28,7 @@ export PROMPT='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'$'\n''%K{white}%F{black}
 alias tmat="tmux attach"
 alias tmls="tmux ls"
 alias fasrc="ssh deum@login.rc.fas.harvard.edu"
-alias rebuild="darwin-rebuild switch --flake $XDG_CONFIG_HOME/nix#main"
+alias rebuild="HOMEBREW_NO_ENV_HINTS=1 HOMEBREW_NO_ANALYTICS=1 darwin-rebuild switch --flake $XDG_CONFIG_HOME/nix#main"
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type file"
