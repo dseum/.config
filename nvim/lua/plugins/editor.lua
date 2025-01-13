@@ -5,7 +5,6 @@ return {
       "folke/tokyonight.nvim",
     },
     config = function()
-      local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")
 
       local AlignBlock = {
@@ -221,7 +220,7 @@ return {
       })
       vim.keymap.set("n", "go", function()
         local buf = vim.api.nvim_get_current_buf()
-        require("mini.diff").toggle_overlay()
+        require("mini.diff").toggle_overlay(buf)
       end)
     end,
   },
@@ -341,7 +340,7 @@ return {
         oil.open()
       end)
       vim.keymap.set("n", "=", function()
-        oil.open(vim.loop.cwd())
+        oil.open(vim.uv.cwd())
       end)
     end,
   },

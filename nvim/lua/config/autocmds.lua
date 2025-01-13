@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function(args)
+  callback = function()
     if vim.bo.buftype == "terminal" then
       vim.cmd.startinsert()
     end
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 local non_filetypes = { "oil" }
 vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function(args)
+  callback = function()
     local value
     if
       vim.bo.buftype == ""
