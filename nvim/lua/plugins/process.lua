@@ -20,7 +20,7 @@ return {
           keymaps = {
             init_selection = "<cr>",
             node_incremental = "<cr>",
-            node_decremental = "<BS>",
+            node_decremental = "<s-cr>",
           },
         },
         textobjects = {
@@ -43,10 +43,21 @@ return {
   {
     "saghen/blink.cmp",
     dependenices = {
+      "folke/lazydev.nvim",
       "rafamadriz/friendly-snippets",
     },
     version = "0.10.0",
     opts = {
+      sources = {
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
+        },
+      },
       completion = {
         list = { selection = { preselect = true, auto_insert = false } },
         menu = {
@@ -238,9 +249,6 @@ return {
           command = "caddy",
           args = { "fmt", "-" },
         },
-        latexindent = {
-          prepend_args = { [[-y="defaultIndent:'  '"]] },
-        },
         rmd = {
           command = "Rscript",
           args = {
@@ -256,6 +264,9 @@ return {
               close(con)
             ]],
           },
+        },
+        ["tex-fmt"] = {
+          args = { "--stdin", "--nowrap" },
         },
       },
       formatters_by_ft = {
@@ -278,7 +289,7 @@ return {
         rmd = { "rmd" },
         sh = { "shfmt" },
         svelte = { "prettierd" },
-        tex = { "latexindent" },
+        tex = { "tex-fmt" },
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },
         rust = { "rustfmt" },
@@ -286,7 +297,7 @@ return {
       },
       format_on_save = {
         timeout_ms = 1000,
-        lsp_fallback = true,
+        lsp_format = "fallback",
       },
     },
   },
@@ -313,6 +324,10 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
-    opts = {},
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
   },
 }
