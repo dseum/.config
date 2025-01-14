@@ -72,6 +72,7 @@
               "flutter"
               "ghostty"
               "orbstack"
+              "sioyek"
             ];
             masApps = {
               "Goodnotes 6" = 1444383602;
