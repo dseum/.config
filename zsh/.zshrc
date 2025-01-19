@@ -3,6 +3,7 @@ setopt NO_CASE_GLOB
 setopt PROMPT_SUBST
 setopt AUTO_CD
 setopt CORRECT
+bindkey -v
 
 # Variables
 export VOLTA_HOME="$HOME/.volta"
