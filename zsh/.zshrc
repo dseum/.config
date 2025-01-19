@@ -13,7 +13,7 @@ export PATH="$HOME/.config/bin:$PATH"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Prompt
-PROMPT=$'%{\e(0%}${(r:$COLUMNS::q:)}%{\e(B%}%F{cyan}%B%2~%b%f'$'\n''%K{white}%F{black} %n %f%k%F{white}%f '
+PROMPT=$'${(r:$COLUMNS::\u2500:)}%F{cyan}%B%2~%b%f\n%K{white}%F{black} %n %f%k%F{white}%f '
 
 # Aliases
 alias tmat="tmux attach"
