@@ -4,6 +4,8 @@ setopt PROMPT_SUBST
 setopt AUTO_CD
 setopt CORRECT
 bindkey -v
+zstyle ':completion:*' list-prompt ''
+zstyle ':completion:*' select-prompt ''
 
 # Variables
 export VOLTA_HOME="$HOME/.volta"
