@@ -17,10 +17,7 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # Prompt
 PROMPT=$'%F{#787e9c}${(r:$COLUMNS::\u2500:)}%f\n%F{cyan}%B%2~%b%f\n%K{white}%F{black} %n %f%k%F{white}%f '
 
-# Aliases
-alias tmat="tmux attach"
-alias tmls="tmux ls"
-alias fasrc="ssh deum@login.rc.fas.harvard.edu"
+# Rebuild
 alias rebuild="HOMEBREW_NO_ENV_HINTS=1 HOMEBREW_NO_ANALYTICS=1 darwin-rebuild switch --flake $XDG_CONFIG_HOME/nix#main"
 
 # fzf
