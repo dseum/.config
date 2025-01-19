@@ -12,13 +12,7 @@ export PATH="$HOME/.config/bin:$PATH"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Prompt
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' formats '%b'
-
-precmd() {
-    vcs_info 
-}
-export PROMPT=$'%{\e(0%}${(r:$COLUMNS::q:)}%{\e(B%}%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'$'\n''%K{white}%F{black} %n %#%f%k%F{white}%f '
+PROMPT=$'%{\e(0%}${(r:$COLUMNS::q:)}%{\e(B%}%F{cyan}%B%2~%b%f'$'\n''%K{white}%F{black} %n %f%k%F{white}%f '
 
 # Aliases
 alias tmat="tmux attach"
