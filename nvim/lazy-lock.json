@@ -10,8 +10,8 @@
   "mini.diff": { "branch": "main", "commit": "00f072250061ef498f91ed226918c9ec31a416a4" },
   "mini.indentscope": { "branch": "main", "commit": "613df2830d7faeae7483ba2e736683154b95921e" },
   "mini.surround": { "branch": "main", "commit": "aa5e245829dd12d8ff0c96ef11da28681d6049aa" },
-  "nvim-lspconfig": { "branch": "master", "commit": "339ccc81e08793c3af9b83882a6ebd90c9cc0d3b" },
-  "nvim-treesitter": { "branch": "master", "commit": "b952a0ab6caabd7839af6b562023bbdf149feb90" },
+  "nvim-lspconfig": { "branch": "master", "commit": "14b5a806c928390fac9ff4a5630d20eb902afad8" },
+  "nvim-treesitter": { "branch": "master", "commit": "4423f3053964461656c7432fd33f205ef88a6168" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "ad8f0a472148c3e0ae9851e26a722ee4e29b1595" },
   "oil.nvim": { "branch": "master", "commit": "09fa1d22f5edf0730824d2b222d726c8c81bbdc9" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
@@ -22,5 +22,5 @@
   "undotree": { "branch": "master", "commit": "2556c6800b210b2096b55b66e74b4cc1d9ebbe4f" },
   "vim-fugitive": { "branch": "master", "commit": "174230d6a7f2df94705a7ffd8d5413e27ec10a80" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
-  "vimtex": { "branch": "master", "commit": "c8412f444bfaf447981242d685c40e45b1c96b82" }
+  "vimtex": { "branch": "master", "commit": "814eaae6dbfe5a293b211ebb9c57de5183d6dfc2" }
 }
