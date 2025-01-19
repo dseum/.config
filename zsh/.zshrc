@@ -17,12 +17,8 @@ zstyle ':vcs_info:git:*' formats '%b'
 
 precmd() {
     vcs_info 
-    precmd() {
-        echo
-        vcs_info 
-    }
 }
-export PROMPT='%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'$'\n''%K{white}%F{black} %n %#%f%k%F{white}%f '
+export PROMPT=$'%{\e(0%}${(r:$COLUMNS::q:)}%{\e(B%}%F{cyan}%B%2~%b %U${vcs_info_msg_0_}%u%f'$'\n''%K{white}%F{black} %n %#%f%k%F{white}%f '
 
 # Aliases
 alias tmat="tmux attach"
