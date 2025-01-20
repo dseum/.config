@@ -70,7 +70,6 @@
               "1password"
               "ghostty"
               "orbstack"
-              "protonvpn"
               "sioyek"
             ];
             masApps = {
@@ -78,6 +77,7 @@
               "KakaoTalk" = 869223134;
               "Messenger" = 1480068668;
               "SurfShark" = 1437809329;
+              "Todoist" = 585829637;
               "WhatsApp" = 310633997;
             };
             onActivation.autoUpdate = true;
