@@ -56,7 +56,6 @@
               pkgs.texliveFull
               pkgs.tmux
               pkgs.uv
-              pkgs.vimgolf
               pkgs.volta
               pkgs.vscode
               pkgs.zoom-us
@@ -69,9 +68,9 @@
             enable = true;
             casks = [
               "1password"
-              "flutter"
               "ghostty"
               "orbstack"
+              "protonvpn"
               "sioyek"
             ];
             masApps = {
