@@ -66,11 +66,14 @@
           ];
           homebrew = {
             enable = true;
+            brews = [
+              "openjdk@17"
+            ];
             casks = [
               "1password"
+              "flutter"
               "ghostty"
               "orbstack"
-              "sioyek"
             ];
             masApps = {
               "Goodnotes 6" = 1444383602;
@@ -166,7 +169,7 @@
                   "/Applications/Nix Apps/Google Chrome.app"
                   "/System/Applications/Mail.app"
                   "/System/Applications/Calendar.app"
-                  "/System/Applications/Reminders.app"
+                  "/Applications/Todoist.app"
                   "/Applications/Nix Apps/Spotify.app"
                   "/Applications/Ghostty.app"
                   "/Applications/Nix Apps/Visual Studio Code.app"
