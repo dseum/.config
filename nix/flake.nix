@@ -88,10 +88,6 @@
             onActivation.cleanup = "zap";
             onActivation.upgrade = true;
           };
-          launchd.daemons."sysctl-vram-limit" = {
-            command = "/usr/sbin/sysctl iogpu.wired_limit_mb=30720";
-            serviceConfig.RunAtLoad = true;
-          };
           networking = {
             knownNetworkServices = [
               "Wi-Fi"
