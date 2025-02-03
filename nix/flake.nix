@@ -47,7 +47,7 @@
               pkgs.ollama
               pkgs.opam
               pkgs.pam-reattach
-              pkgs.python313
+              pkgs.python312Full
               pkgs.ripgrep
               pkgs.rustup
               pkgs.slack
