@@ -37,7 +37,7 @@ lalt - r : "${HOME}"/.config/skhd/scripts/effect 9
 
 shift + lalt - m : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" elif .type == "bsp" then "float" else "stack" end')
 
-shift + lalt - 1 : /Applications/Nix\ Apps/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Default" --new-window
+shift + lalt - 1 : /Applications/Nix\ Apps/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 8" --new-window
 shift + lalt - 2 : /Applications/Nix\ Apps/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 1" --new-window
 shift + lalt - 3 : /Applications/Nix\ Apps/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 6" --new-window
 shift + lalt - e : open -na /Applications/Ghostty.app
