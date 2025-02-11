@@ -34,6 +34,7 @@
             systemPackages = [
               pkgs.appcleaner
               pkgs.buf
+              pkgs.cmake
               pkgs.cocoapods
               pkgs.fd
               pkgs.fzf
@@ -68,6 +69,7 @@
           homebrew = {
             enable = true;
             brews = [
+              "ghcup"
               "openjdk@17"
             ];
             casks = [
