@@ -9,10 +9,12 @@ zstyle ':completion:*' select-prompt ''
 
 # Variables
 export VOLTA_HOME="$HOME/.volta"
+export VCPKG_ROOT="$HOME/.vcpkg"
 
 # Path
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$VCPKG_ROOT:$PATH"
 
 # Prompt
 PROMPT=$'%F{#787e9c}${(r:$COLUMNS::\u2500:)}%f\n%F{cyan}%B%2~%b%f\n%K{white}%F{black} %n %f%k%F{white}%f '
