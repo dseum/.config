@@ -115,6 +115,7 @@ return {
         docker_compose_language_service = { "docker-compose-language-server" },
         dockerls = { "dockerfile-language-server" },
         gopls = { "gopls" },
+        hls = { "haskell-language-server" },
         html = { "html-lsp" },
         jsonls = { "json-lsp" },
         lua_ls = {
