@@ -35,15 +35,19 @@
               pkgs.appcleaner
               pkgs.buf
               pkgs.cmake
+              pkgs.cmake-format
               pkgs.cocoapods
               pkgs.fd
               pkgs.fzf
               pkgs.go
               pkgs.google-chrome
+              pkgs.llvmPackages_18.clang-unwrapped
+              pkgs.llvmPackages_18.clang-tools
               (pkgs.neovim.override {
                 viAlias = true;
                 vimAlias = true;
               })
+              pkgs.ninja
               pkgs.nixfmt-rfc-style
               pkgs.ollama
               pkgs.opam
@@ -71,6 +75,7 @@
             brews = [
               "ghcup"
               "openjdk@17"
+              "pkg-config"
             ];
             casks = [
               "1password"
