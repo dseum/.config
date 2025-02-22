@@ -41,8 +41,8 @@
               pkgs.fzf
               pkgs.go
               pkgs.google-chrome
-              pkgs.llvmPackages_18.clang-unwrapped
-              pkgs.llvmPackages_18.clang-tools
+              pkgs.llvmPackages_19.libcxxStdenv
+              pkgs.llvmPackages_19.clang-tools
               (pkgs.neovim.override {
                 viAlias = true;
                 vimAlias = true;
@@ -73,7 +73,11 @@
           homebrew = {
             enable = true;
             brews = [
+              "autoconf"
+              "automake"
+              "autoconf-archive"
               "ghcup"
+              "libtool"
               "openjdk@17"
               "pkg-config"
             ];
