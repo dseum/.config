@@ -38,6 +38,7 @@
               pkgs.cmake-format
               pkgs.cocoapods
               pkgs.dafny
+              pkgs.dotnetCorePackages.dotnet_8.sdk
               pkgs.fd
               pkgs.fzf
               pkgs.go
