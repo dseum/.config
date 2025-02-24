@@ -111,7 +111,9 @@ return {
             },
           },
         },
-        clangd = {},
+        clangd = {
+          filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
+        },
         dafny = {},
         docker_compose_language_service = { "docker-compose-language-server" },
         dockerls = { "dockerfile-language-server" },
