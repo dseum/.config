@@ -37,6 +37,7 @@
               pkgs.cmake
               pkgs.cmake-format
               pkgs.cocoapods
+              pkgs.dafny
               pkgs.fd
               pkgs.fzf
               pkgs.go
