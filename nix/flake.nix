@@ -43,7 +43,9 @@
               pkgs.fzf
               pkgs.go
               pkgs.google-chrome
-              pkgs.llvmPackages_19.libcxxStdenv
+              (pkgs.llvmPackages_19.clangUseLLVM.override {
+                libcxx = pkgs.llvmPackages_19.libcxxStdenv;
+              })
               pkgs.llvmPackages_19.clang-tools
               (pkgs.neovim.override {
                 viAlias = true;
