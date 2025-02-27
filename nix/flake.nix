@@ -43,10 +43,6 @@
               pkgs.fzf
               pkgs.go
               pkgs.google-chrome
-              (pkgs.llvmPackages_19.clangUseLLVM.override {
-                libcxx = pkgs.llvmPackages_19.libcxxStdenv;
-              })
-              pkgs.llvmPackages_19.clang-tools
               (pkgs.neovim.override {
                 viAlias = true;
                 vimAlias = true;
@@ -82,6 +78,7 @@
               "autoconf-archive"
               "ghcup"
               "libtool"
+              "llvm@19"
               "openjdk@17"
               "pkg-config"
             ];

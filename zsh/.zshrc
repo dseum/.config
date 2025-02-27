@@ -15,6 +15,7 @@ export VCPKG_ROOT="$HOME/.vcpkg"
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$VCPKG_ROOT:$PATH"
+export PATH="/opt/homebrew/Cellar/llvm/19.1.7_1/bin:$PATH"
 
 # Prompt
 PROMPT=$'%F{#787e9c}${(r:$COLUMNS::\u2500:)}%f\n%F{cyan}%B%2~%b%f\n%K{white}%F{black} %n %f%k%F{white}%f '
