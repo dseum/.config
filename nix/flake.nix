@@ -52,6 +52,7 @@
               pkgs.ollama
               pkgs.opam
               pkgs.pam-reattach
+              pkgs.python2Full
               pkgs.python312Full
               pkgs.ripgrep
               pkgs.rustup
@@ -77,6 +78,7 @@
               "automake"
               "autoconf-archive"
               "ghcup"
+              "gsl"
               "libtool"
               "llvm@19"
               "openjdk@17"
@@ -115,7 +117,12 @@
           nix.settings.experimental-features = "nix-command flakes";
           nixpkgs = {
             hostPlatform = "aarch64-darwin";
-            config.allowUnfree = true;
+            config = {
+              allowUnfree = true;
+              permittedInsecurePackages = [
+                "python-2.7.18.8"
+              ];
+            };
           };
           power.sleep = {
             computer = 20;
