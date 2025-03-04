@@ -52,7 +52,13 @@
               pkgs.ollama
               pkgs.opam
               pkgs.pam-reattach
-              pkgs.python2Full
+              (pkgs.python2Full.withPackages (
+                ps: with ps; [
+                  pip
+                  setuptools
+                  wheel
+                ]
+              ))
               pkgs.python312Full
               pkgs.ripgrep
               pkgs.rustup
@@ -121,6 +127,7 @@
               allowUnfree = true;
               permittedInsecurePackages = [
                 "python-2.7.18.8"
+                "python-2.7.18.8-env"
               ];
             };
           };
