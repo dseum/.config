@@ -164,25 +164,20 @@
                   pathsToLink = "/Applications";
                 };
               in
-              pkgs.lib.mkForce ''
-                echo "setting up /Applications..." >&2
-                dir=/Applications/Nix\ Apps
-                rm -rf "$dir"
-                mkdir -p "$dir"
+              ''
+                echo "setting up apps..." >&2
                 find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-                while read -r src; do
-                  # Syncs the app as a trampoline
-                  app_name=$(basename -s ".app" "$src")
-                  echo "syncing $app_name" >&2
-                  ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$src/" "$dir/$app_name.app"
-
-                  # Replaces icons if replacement exist
+                while read -r app_src; do
+                  app_name=$(basename -s ".app" "$app_src")
+                  echo "copying $app_name" >&2
+                  cp -R "$app_src" "/Applications"
                   icns_src="${paths.config}/icons/$app_name.icns"
                   if [ -f "$icns_src" ]; then
-                    icns_tgt=$(find "$dir/$app_name.app/Contents/Resources" -name "*.icns")
+                    icns_tgt=$(find "/Applications/$app_name.app/Contents/Resources" -name "*.icns")
                     cp "$icns_src" "$icns_tgt"
                   fi
                 done
+                echo "resetting icons..." >&2
                 rm -rf /Library/Caches/com.apple.iconservices.store 2>/dev/null
                 find /private/var/folders/ \( -name com.apple.dock.iconcache -or -name com.apple.iconservices \) -exec rm -rf {} \; 2>/dev/null
                 killall Finder
@@ -193,14 +188,14 @@
               dock = {
                 autohide = true;
                 persistent-apps = [
-                  "/Applications/Nix Apps/Google Chrome.app"
+                  "/Applications/Dia.app"
                   "/System/Applications/Mail.app"
                   "/System/Applications/Calendar.app"
                   "/Applications/Todoist.app"
-                  "/Applications/Nix Apps/Spotify.app"
+                  "/Applications/Spotify.app"
                   "/Applications/Ghostty.app"
-                  "/Applications/Nix Apps/Visual Studio Code.app"
-                  "/Applications/Nix Apps/Slack.app"
+                  "/Applications/Visual Studio Code.app"
+                  "/Applications/Slack.app"
                   "/Applications/KakaoTalk.app"
                   "/Applications/WhatsApp.app"
                   "/Applications/Messenger.app"
