@@ -164,7 +164,7 @@
                   pathsToLink = "/Applications";
                 };
               in
-              ''
+              pkgs.lib.mkForce ''
                 echo "setting up apps..." >&2
                 find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
                 while read -r app_src; do
