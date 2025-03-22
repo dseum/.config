@@ -188,7 +188,7 @@
               dock = {
                 autohide = true;
                 persistent-apps = [
-                  "/Applications/Dia.app"
+                  "/Applications/Zen.app"
                   "/System/Applications/Mail.app"
                   "/System/Applications/Calendar.app"
                   "/Applications/Todoist.app"
