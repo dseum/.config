@@ -86,7 +86,7 @@
               "ghcup"
               "gsl"
               "libtool"
-              "llvm@19"
+              "llvm@18"
               "openjdk@17"
               "pkg-config"
             ];
