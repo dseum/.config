@@ -12,10 +12,10 @@ export VOLTA_HOME="$HOME/.volta"
 export VCPKG_ROOT="$HOME/.vcpkg"
 
 # Path
-export PATH="$PATH:$HOME/.config/bin:$PATH"
-export PATH="$PATH:$VOLTA_HOME/bin"
-export PATH="$PATH:$VCPKG_ROOT"
-export PATH="$PATH:/opt/homebrew/opt/llvm@18/bin"
+export PATH="$HOME/.config/bin:$PATH"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$VCPKG_ROOT:$PATH"
+export PATH="/opt/homebrew/opt/llvm@18/bin:$PATH"
 
 # Prompt
 PROMPT=$'%F{#787e9c}${(r:$COLUMNS::\u2500:)}%f\n%F{cyan}%B%2~%b%f\n%K{white}%F{black} %n %f%k%F{white}%f '
