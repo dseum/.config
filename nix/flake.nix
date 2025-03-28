@@ -2,7 +2,7 @@
   description = "nix-darwin system flake";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
@@ -36,7 +36,6 @@
               pkgs.buf
               pkgs.cmake
               pkgs.cmake-format
-              pkgs.cocoapods
               pkgs.dafny
               pkgs.dotnetCorePackages.dotnet_8.sdk
               pkgs.fd
@@ -71,6 +70,7 @@
               pkgs.uv
               pkgs.volta
               pkgs.vscode
+              pkgs.wget
               pkgs.zoom-us
             ];
           };
@@ -87,12 +87,10 @@
               "gsl"
               "libtool"
               "llvm@18"
-              "openjdk@17"
               "pkg-config"
             ];
             casks = [
               "1password"
-              "flutter"
               "ghostty"
               "orbstack"
             ];
