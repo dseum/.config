@@ -10,8 +10,8 @@
     inputs@{
       self,
       nix-darwin,
-      nixpkgs,
       nix-homebrew,
+      nixpkgs,
     }:
     let
       configuration =
@@ -118,7 +118,10 @@
             ];
             hostName = "Denniss-MacBook-Pro";
           };
-          nix.settings.experimental-features = "nix-command flakes";
+          nix = {
+            gc.automatic = true;
+            settings.experimental-features = "nix-command flakes";
+          };
           nixpkgs = {
             hostPlatform = "aarch64-darwin";
             config = {
@@ -200,6 +203,7 @@
                   "/System/Applications/System Settings.app"
                 ];
                 show-recents = false;
+                universalaccess.reduceMotion = true;
               };
               finder = {
                 AppleShowAllExtensions = true;
@@ -222,7 +226,7 @@
               enableKeyMapping = true;
               remapCapsLockToEscape = true;
             };
-            stateVersion = 5;
+            stateVersion = 6;
           };
         };
     in
