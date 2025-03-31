@@ -184,7 +184,6 @@
                 minimize-to-application = true;
                 mru-spaces = false;
                 show-recents = false;
-                universalaccess.reduceMotion = true;
               };
               finder = {
                 _FXSortFoldersFirst = true;
@@ -205,6 +204,7 @@
                 AppleShowAllExtensions = true;
                 AppleShowAllFiles = false;
               };
+              universalaccess.reduceMotion = true;
               WindowManager = {
                 EnableStandardClickToShowDesktop = false;
                 EnableTiledWindowMargins = false;
