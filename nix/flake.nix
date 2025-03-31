@@ -83,10 +83,10 @@
               "autoconf"
               "automake"
               "autoconf-archive"
+              "llvm@18"
               "ghcup"
               "gsl"
               "libtool"
-              "llvm@18"
               "pkg-config"
             ];
             casks = [
