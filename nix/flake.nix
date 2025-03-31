@@ -166,6 +166,8 @@
             defaults = {
               dock = {
                 autohide = true;
+                autohide-delay = 0.0;
+                autohide-time-modifier = 0.0;
                 persistent-apps = [
                   "/Applications/Zen.app"
                   "/System/Applications/Mail.app"
@@ -200,11 +202,14 @@
               NSGlobalDomain = {
                 AppleEnableMouseSwipeNavigateWithScrolls = false;
                 AppleEnableSwipeNavigateWithScrolls = false;
+                AppleMeasurementUnits = "Centimeters";
                 AppleScrollerPagingBehavior = true;
                 AppleShowAllExtensions = true;
                 AppleShowAllFiles = false;
+                AppleSpacesSwitchOnActivate = false;
+                AppleTemperatureUnit = "Celsius";
+
               };
-              universalaccess.reduceMotion = true;
               WindowManager = {
                 EnableStandardClickToShowDesktop = false;
                 EnableTiledWindowMargins = false;

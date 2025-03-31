@@ -271,7 +271,6 @@ return {
   },
   {
     "dseum/window.nvim",
-    dev = true,
     config = function()
       local window = require("window")
       window.setup()
