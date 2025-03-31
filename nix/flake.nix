@@ -120,7 +120,13 @@
           };
           nix = {
             gc.automatic = true;
-            settings.experimental-features = "nix-command flakes";
+            settings = {
+              auto-optimise-store = true;
+              experimental-features = [
+                "nix-command"
+                "flakes"
+              ];
+            };
           };
           nixpkgs = {
             hostPlatform = "aarch64-darwin";
