@@ -33,42 +33,31 @@
             ];
             systemPackages = [
               pkgs.appcleaner
-              pkgs.buf
               pkgs.cmake
               pkgs.cmake-format
+              pkgs.curl
               pkgs.dafny
               pkgs.dotnetCorePackages.dotnet_8.sdk
               pkgs.fd
               pkgs.fzf
               pkgs.go
-              pkgs.google-chrome
               (pkgs.neovim.override {
                 viAlias = true;
                 vimAlias = true;
               })
               pkgs.ninja
               pkgs.nixfmt-rfc-style
-              pkgs.ollama
               pkgs.opam
               pkgs.pam-reattach
-              (pkgs.python2Full.withPackages (
-                ps: with ps; [
-                  pip
-                  setuptools
-                  wheel
-                ]
-              ))
-              pkgs.python312Full
+              pkgs.python313Full
               pkgs.ripgrep
               pkgs.rustup
               pkgs.slack
               pkgs.spotify
-              pkgs.sqlc
               pkgs.tex-fmt
               pkgs.texliveFull
               pkgs.tmux
               pkgs.uv
-              pkgs.volta
               pkgs.vscode
               pkgs.wget
               pkgs.zoom-us
@@ -79,16 +68,6 @@
           ];
           homebrew = {
             enable = true;
-            brews = [
-              "autoconf"
-              "automake"
-              "autoconf-archive"
-              "llvm@18"
-              "ghcup"
-              "gsl"
-              "libtool"
-              "pkg-config"
-            ];
             casks = [
               "1password"
               "ghostty"
@@ -132,10 +111,6 @@
             hostPlatform = "aarch64-darwin";
             config = {
               allowUnfree = true;
-              permittedInsecurePackages = [
-                "python-2.7.18.8"
-                "python-2.7.18.8-env"
-              ];
             };
           };
           power.sleep = {
