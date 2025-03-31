@@ -183,24 +183,39 @@
                   "/Applications/Messenger.app"
                   "/System/Applications/System Settings.app"
                 ];
+                launchanim = false;
+                minimize-to-application = true;
+                mru-spaces = false;
                 show-recents = false;
                 universalaccess.reduceMotion = true;
               };
               finder = {
+                _FXSortFoldersFirst = true;
                 AppleShowAllExtensions = true;
                 AppleShowAllFiles = false;
                 CreateDesktop = false;
                 FXEnableExtensionChangeWarning = false;
                 FXPreferredViewStyle = "clmv";
                 FXRemoveOldTrashItems = true;
-                ShowPathbar = false;
-                ShowStatusBar = false;
+                NewWindowTarget = "Home";
               };
+              hitoolbox.AppleFnUsageType = "Change Input Source";
               loginwindow.GuestEnabled = false;
+              NSGlobalDomain = {
+                AppleEnableMouseSwipeNavigateWithScrolls = false;
+                AppleEnableSwipeNavigateWithScrolls = false;
+                AppleScrollerPagingBehavior = true;
+                AppleShowAllExtensions = true;
+                AppleShowAllFiles = false;
+              };
               WindowManager = {
                 EnableStandardClickToShowDesktop = false;
-                GloballyEnabled = false;
-                StandardHideDesktopIcons = false;
+                EnableTiledWindowMargins = false;
+                EnableTilingByEdgeDrag = false;
+                EnableTilingOptionAccelerator = false;
+                EnableTopTilingByEdgeDrag = false;
+                StandardHideDesktopIcons = true;
+                StandardHideWidgets = true;
               };
             };
             keyboard = {
