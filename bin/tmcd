@@ -5,7 +5,7 @@ paths=$(
 	echo "$HOME/Projects/"
 	fd . ~/Projects --exact-depth 1 --type d
 	fd . ~/Projects/courses --exact-depth 1 --type d
-	fd . ~/Projects/orgs --exact-depth 1 --type d
+	fd . ~/Projects/external --exact-depth 1 --type d
 )
 selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
 selected_path=${selected_path%/}

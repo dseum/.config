@@ -7,7 +7,7 @@ else
 		fd . ~/.config --exact-depth 1 --type d
 		fd . ~/Projects --exact-depth 2 --type d
 		fd . ~/Projects/courses --exact-depth 2 --type d
-		fd . ~/Projects/orgs --exact-depth 2 --type d
+		fd . ~/Projects/external --exact-depth 2 --type d
 	)
 	selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
 	selected_path=${selected_path%/}
