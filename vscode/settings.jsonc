@@ -55,16 +55,20 @@
   "editor.renderWhitespace": "none",
   "breadcrumbs.enabled": false,
   "editor.cursorSurroundingLines": 8,
+  "workbench.layoutControl.enabled": false,
+  "window.commandCenter": false,
+  "workbench.activityBar.location": "hidden",
+  "extensions.ignoreRecommendations": true,
 
   /**
    * Visuals
    **/
   "workbench.colorTheme": "Tokyo Night",
   "workbench.iconTheme": "keen-neutral-icon-theme",
-  "editor.lineHeight": 19.5,
+  "editor.lineHeight": 20,
   "terminal.integrated.lineHeight": 1.25,
   "editor.fontFamily": "Jetbrains Mono",
-  "editor.fontSize": 13,
+  "editor.fontSize": 14,
   "workbench.colorCustomizations": {
     "editorLineNumber.foreground": "#B4B4B4"
   },
@@ -91,7 +95,10 @@
 
     // Rust
     "**/debug": true,
-    "**/target": true
+    "**/target": true,
+
+    // Flutter
+    "**/.dart_tool": true
   },
 
   /**
@@ -102,9 +109,8 @@
   "vim.showmodename": false,
   "vim.showcmd": false,
   "vim.shell": "/bin/zsh",
-  "vim.gdefault": true,
-  "vim.ignorecase": false,
-  "vim.smartcase": false,
+  "vim.ignorecase": true,
+  "vim.smartcase": true,
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "j"],
@@ -114,7 +120,7 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] },
-    { "before": ["<leader>", "y"], "after": ["\"", "*", "y"] },
+    { "before": ["<Leader>", "y"], "after": ["\"", "*", "y"] },
     {
       "before": ["<C-d>"],
       "after": ["<C-d>", "z", "z"]
@@ -139,21 +145,12 @@
   "vim.visualModeKeyBindingsNonRecursive": [
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] },
-    // reimplement once :m pr released
-    // {
-    //   "before": ["J"],
-    //   "commands": [":m '>+1<CR>gv=gv"]
-    // },
-    // {
-    //   "before": ["K"],
-    //   "commands": [":m '<-2<CR>gv=gv"]
-    // },
     {
       "before": ["p"],
       "after": ["p", "g", "v", "y"]
     }
   ],
-  "vim.leader": "<space>",
+  "vim.leader": "<Space>",
   "vim.handleKeys": {
     "<C-w>": false,
     "<C-n>": false,
@@ -250,10 +247,123 @@
     "editor.wordWrap": "bounded",
     "editor.tabSize": 2
   },
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "lualatexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-lualatex",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "xelatexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-xelatex",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "latexmk_rconly",
+      "command": "latexmk",
+      "args": ["%DOC%"],
+      "env": {}
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOCFILE%"],
+      "env": {}
+    },
+    {
+      "name": "rnw2tex",
+      "command": "Rscript",
+      "args": [
+        "-e",
+        "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
+      ],
+      "env": {}
+    },
+    {
+      "name": "jnw2tex",
+      "command": "julia",
+      "args": ["-e", "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"],
+      "env": {}
+    },
+    {
+      "name": "jnw2texminted",
+      "command": "julia",
+      "args": [
+        "-e",
+        "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+      ],
+      "env": {}
+    },
+    {
+      "name": "pnw2tex",
+      "command": "pweave",
+      "args": ["-f", "tex", "%DOC_EXT%"],
+      "env": {}
+    },
+    {
+      "name": "pnw2texminted",
+      "command": "pweave",
+      "args": ["-f", "texminted", "%DOC_EXT%"],
+      "env": {}
+    },
+    {
+      "name": "tectonic",
+      "command": "tectonic",
+      "args": ["--synctex", "--keep-logs", "%DOC%.tex"],
+      "env": {}
+    }
+  ],
+  "latex-workshop.formatting.latex": "latexindent",
+  "latex-workshop.formatting.latexindent.args": [
+    "-c",
+    "%DIR%/",
+    "%TMPFILE%",
+    "-y=defaultIndent: '  '"
+  ],
   "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
   "latex-workshop.view.pdf.viewer": "tab",
-  "latex-workshop.formatting.latex": "tex-fmt",
-  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.autoBuild.run": "onSave",
   "latex-workshop.latex.autoClean.run": "onBuilt",
   "latex-workshop.latex.clean.fileTypes": [
     "*.aux",
@@ -280,9 +390,9 @@
   ],
 
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
-  "python.defaultInterpreterPath": "python3.11",
+  "python.defaultInterpreterPath": "python3.13",
 
   "[cpp]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
@@ -301,20 +411,17 @@
   },
 
   "[dart]": {
-    "editor.formatOnSave": true,
     "editor.selectionHighlight": false,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off",
-    "editor.defaultFormatter": "Dart-Code.dart-code",
-    "editor.rulers": [80]
+    "editor.defaultFormatter": "Dart-Code.dart-code"
   },
-  "dart.flutterHotReloadOnSave": "all",
-
   "markdown.copyFiles.destination": {
     "/docs/**/*": "images/${documentBaseName}/"
   },
-  "workbench.layoutControl.enabled": false,
-  "window.commandCenter": false,
-  "workbench.activityBar.location": "hidden"
+
+  "files.associations": {
+    "*.Rmd": "rmd"
+  }
 }
