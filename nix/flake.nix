@@ -35,18 +35,20 @@
               pkgs.appcleaner
               pkgs.cmake
               pkgs.cmake-format
+              pkgs.corepack_23
               pkgs.curl
               pkgs.dafny
               pkgs.dotnetCorePackages.dotnet_8.sdk
               pkgs.fd
               pkgs.fzf
               pkgs.go
+              pkgs.luarocks
               (pkgs.neovim.override {
                 viAlias = true;
                 vimAlias = true;
               })
-              pkgs.ninja
               pkgs.nixfmt-rfc-style
+              pkgs.nodejs_23
               pkgs.opam
               pkgs.pam-reattach
               pkgs.python313Full
@@ -114,6 +116,17 @@
             computer = 20;
             display = 15;
           };
+          programs.fish = {
+            enable = true;
+            shellInit = ''
+              export XDG_CACHE_HOME="$HOME/.cache"
+              export XDG_CONFIG_HOME="$HOME/.config"
+              export XDG_DATA_HOME="$HOME/.local/share"
+              export EDITOR="nvim"
+              export VISUAL="nvim"
+              export VCPKG_ROOT="${pkgs.vcpkg}/share/vcpkg"
+            '';
+          };
           programs.zsh = {
             enable = true;
             enableGlobalCompInit = true;
@@ -125,6 +138,7 @@
               export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
               export EDITOR="nvim"
               export VISUAL="nvim"
+              export VCPKG_ROOT="${pkgs.vcpkg}/share/vcpkg"
             '';
           };
           services = {
@@ -186,6 +200,7 @@
                 minimize-to-application = true;
                 mru-spaces = false;
                 show-recents = false;
+                wvous-br-corner = 1;
               };
               finder = {
                 _FXSortFoldersFirst = true;

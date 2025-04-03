@@ -2,6 +2,7 @@
 !.gitignore
 
 !bin
+!fish
 !ghostty
 !icons
 !nix
