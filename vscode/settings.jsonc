@@ -1,7 +1,7 @@
 {
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.osx": "fish",
   "window.confirmBeforeClose": "keyboardOnly",
   "editor.copyWithSyntaxHighlighting": false,
   "security.workspace.trust.enabled": false,
