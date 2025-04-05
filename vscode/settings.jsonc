@@ -111,12 +111,6 @@
   "vim.shell": "/bin/zsh",
   "vim.ignorecase": true,
   "vim.smartcase": true,
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
-    }
-  ],
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] },
