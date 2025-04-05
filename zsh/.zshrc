@@ -8,7 +8,7 @@ zstyle ':completion:*' list-prompt ''
 zstyle ':completion:*' select-prompt ''
 
 # Path
-export PATH="$HOME/.config/bin:$PATH"
+export PATH="$XDG_CONFIG_HOME/bin:$PATH"
 
 # Prompt
 PROMPT=$'%F{#787e9c}${(r:$COLUMNS::\u2500:)}%f\n%F{cyan}%B%2~%b%f\n%K{white}%F{black} %n %f%k%F{white}%f '
