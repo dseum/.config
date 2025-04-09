@@ -174,6 +174,7 @@
                   "/Applications/Spotify.app"
                   "/Applications/Ghostty.app"
                   "/Applications/Visual Studio Code.app"
+                  "/Applications/VMware Fusion.app"
                   "/Applications/Slack.app"
                   "/Applications/KakaoTalk.app"
                   "/Applications/WhatsApp.app"
