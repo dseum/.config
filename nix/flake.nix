@@ -1,10 +1,13 @@
 {
-  description = "nix-darwin system flake";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nix-homebrew.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      nix-darwin.follows = "nix-darwin";
+    };
   };
   outputs =
     inputs@{
@@ -16,12 +19,6 @@
     let
       configuration =
         { pkgs, config, ... }:
-        let
-          paths = {
-            home = "/Users/denniseum";
-            config = "/Users/denniseum/.config";
-          };
-        in
         {
           environment = {
             etc."pam.d/sudo_local".text = ''
@@ -64,6 +61,14 @@
               pkgs.wget
               pkgs.zoom-us
             ];
+            variables = {
+              EDITOR = "nvim";
+              VISUAL = "nvim";
+              XDG_CACHE_HOME = "/Users/denniseum/.cache";
+              XDG_CONFIG_HOME = "/Users/denniseum/.config";
+              XDG_DATA_HOME = "/Users/denniseum/.local/share";
+              ZDOTDIR = "/Users/denniseum/.config/zsh";
+            };
           };
           fonts.packages = [
             pkgs.jetbrains-mono
@@ -75,14 +80,14 @@
               "ghostty"
               "orbstack"
             ];
-            masApps = {
-              "Goodnotes 6" = 1444383602;
-              "KakaoTalk" = 869223134;
-              "Messenger" = 1480068668;
-              "SurfShark" = 1437809329;
-              "Todoist" = 585829637;
-              "WhatsApp" = 310633997;
-            };
+            # masApps = {
+            #   "Goodnotes 6" = 1444383602;
+            #   "KakaoTalk" = 869223134;
+            #   "Messenger" = 1480068668;
+            #   "SurfShark" = 1437809329;
+            #   "Todoist" = 585829637;
+            #   "WhatsApp" = 310633997;
+            # };
             onActivation.autoUpdate = true;
             onActivation.cleanup = "zap";
             onActivation.upgrade = true;
@@ -108,38 +113,17 @@
           };
           nixpkgs = {
             hostPlatform = "aarch64-darwin";
-            config = {
-              allowUnfree = true;
-            };
+            config.allowUnfree = true;
           };
           power.sleep = {
             computer = 20;
             display = 15;
           };
-          programs.fish = {
-            enable = true;
-            shellInit = ''
-              export XDG_CACHE_HOME="$HOME/.cache"
-              export XDG_CONFIG_HOME="$HOME/.config"
-              export XDG_DATA_HOME="$HOME/.local/share"
-              export EDITOR="nvim"
-              export VISUAL="nvim"
-              export VCPKG_ROOT="${pkgs.vcpkg}/share/vcpkg"
-            '';
-          };
+          programs.fish.enable = true;
           programs.zsh = {
             enable = true;
             enableGlobalCompInit = true;
             enableBashCompletion = true;
-            shellInit = ''
-              export XDG_CACHE_HOME="$HOME/.cache"
-              export XDG_CONFIG_HOME="$HOME/.config"
-              export XDG_DATA_HOME="$HOME/.local/share"
-              export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-              export EDITOR="nvim"
-              export VISUAL="nvim"
-              export VCPKG_ROOT="${pkgs.vcpkg}/share/vcpkg"
-            '';
           };
           services = {
             skhd.enable = true;
@@ -164,7 +148,7 @@
                   app_name=$(basename -s ".app" "$app_src")
                   echo "copying $app_name" >&2
                   cp -R "$app_src" "/Applications"
-                  icns_src="${paths.config}/icons/$app_name.icns"
+                  icns_src="${config.environment.variables.XDG_CONFIG_HOME}/icons/$app_name.icns"
                   if [ -f "$icns_src" ]; then
                     icns_tgt=$(find "/Applications/$app_name.app/Contents/Resources" -name "*.icns")
                     cp "$icns_src" "$icns_tgt"
