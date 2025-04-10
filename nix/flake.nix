@@ -107,9 +107,10 @@
           nix = {
             gc.automatic = true;
             optimise.automatic = true;
-            settings = {
-              experimental-features = "nix-command flakes";
-            };
+            settings.experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
           };
           nixpkgs = {
             hostPlatform = "aarch64-darwin";
