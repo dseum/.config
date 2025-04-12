@@ -46,7 +46,7 @@ return {
       "folke/lazydev.nvim",
       "rafamadriz/friendly-snippets",
     },
-    version = "1.0.0",
+    version = "1.1.1",
     opts = {
       sources = {
         default = { "lazydev", "lsp", "path", "snippets", "buffer" },
