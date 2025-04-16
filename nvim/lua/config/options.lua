@@ -9,7 +9,6 @@ vim.opt.showmode = false
 vim.opt.cmdheight = 0
 vim.opt.showcmd = false
 vim.diagnostic.config({
-  virtual_lines = true,
   virtual_text = false,
   underline = false,
 })
