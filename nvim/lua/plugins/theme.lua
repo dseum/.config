@@ -12,12 +12,11 @@ return {
           hl.LineNrBelow = {
             fg = c.dark5,
           }
-          hl.TelescopePromptBorder =
-            { fg = c.border_highlight, bg = c.bg_float }
+          hl.TelescopePromptBorder = { fg = c.border_highlight, bg = c.bg_float }
           hl.TelescopePromptTitle = { fg = c.border_highlight, bg = c.bg_float }
         end,
       })
-      vim.cmd("colorscheme tokyonight")
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
 }
