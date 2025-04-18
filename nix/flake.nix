@@ -44,6 +44,7 @@
               pkgs.fzf
               pkgs.go
               pkgs.luarocks
+              pkgs.mupdf
               (pkgs.neovim.override {
                 viAlias = true;
                 vimAlias = true;
@@ -60,6 +61,7 @@
               pkgs.tex-fmt
               pkgs.texliveFull
               pkgs.tmux
+              pkgs.tree-sitter
               pkgs.uv
               pkgs.vscode
               pkgs.wget
@@ -172,7 +174,7 @@
                 autohide-delay = 0.0;
                 autohide-time-modifier = 0.0;
                 persistent-apps = [
-                  "/Applications/Zen.app"
+                  "/Applications/Dia.app"
                   "/System/Applications/Mail.app"
                   "/System/Applications/Calendar.app"
                   "/Applications/Todoist.app"
@@ -187,7 +189,6 @@
                   "/System/Applications/System Settings.app"
                 ];
                 launchanim = false;
-                minimize-to-application = true;
                 mru-spaces = false;
                 show-recents = false;
                 wvous-br-corner = 1;
