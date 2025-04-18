@@ -1,15 +1,6 @@
 {
   "name": "custom-snippets",
   "contributes": {
-    "snippets": [
-      {
-        "language": "tex",
-        "path": "./tex.json"
-      },
-      {
-        "language": "rmd",
-        "path": "./tex.json"
-      }
-    ]
+    "snippets": []
   }
 }
