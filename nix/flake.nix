@@ -34,6 +34,7 @@
             ];
             systemPackages = [
               pkgs.appcleaner
+              pkgs.ccache
               pkgs.cmake
               pkgs.cmake-format
               pkgs.corepack_23
@@ -58,6 +59,7 @@
               pkgs.rustup
               pkgs.slack
               pkgs.spotify
+              pkgs.telegram-desktop
               pkgs.tex-fmt
               pkgs.texliveFull
               pkgs.tmux
