@@ -1,11 +1,12 @@
 if status is-interactive
     # General
-    fish_vi_key_bindings
-    set fish_cursor_default block
-    set fish_cursor_insert block
+    set -g fish_key_bindings fish_vi_key_bindings
+    set -g fish_cursor_default block
+    set -g fish_cursor_insert block
 
     # Path
-    fish_add_path "$XDG_CONFIG_HOME/bin"
+    fish_add_path -g "$XDG_CONFIG_HOME/bin"
+    fish_add_path -g "$HOME/Projects/external/chromium/depot_tools"
 
     # fzf
     set -x FZF_DEFAULT_COMMAND "fd --type file"
