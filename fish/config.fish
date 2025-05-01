@@ -6,7 +6,6 @@ if status is-interactive
 
     # Path
     fish_add_path -g "$XDG_CONFIG_HOME/bin"
-    fish_add_path -g "$HOME/Projects/external/chromium/depot_tools"
 
     # fzf
     set -x FZF_DEFAULT_COMMAND "fd --type file"
