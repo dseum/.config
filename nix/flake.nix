@@ -67,7 +67,6 @@
               pkgs.uv
               pkgs.vscode
               pkgs.wget
-              pkgs.zoom-us
             ];
             variables = {
               EDITOR = "nvim";
