@@ -37,7 +37,6 @@
               pkgs.ccache
               pkgs.cmake
               pkgs.cmake-format
-              pkgs.corepack_23
               pkgs.curl
               pkgs.dafny
               pkgs.dotnetCorePackages.dotnet_8.sdk
@@ -54,6 +53,7 @@
               pkgs.nodejs_23
               pkgs.opam
               pkgs.pam-reattach
+              pkgs.pnpm
               pkgs.python313Full
               pkgs.ripgrep
               pkgs.rustup
