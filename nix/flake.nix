@@ -33,6 +33,7 @@
               pkgs.zsh
             ];
             systemPackages = [
+              pkgs.R
               pkgs.appcleaner
               pkgs.ccache
               pkgs.cmake
