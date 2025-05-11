@@ -51,7 +51,6 @@
                 vimAlias = true;
               })
               pkgs.nixfmt-rfc-style
-              pkgs.nodejs_23
               pkgs.opam
               pkgs.pam-reattach
               pkgs.pnpm
