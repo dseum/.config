@@ -33,7 +33,6 @@
               pkgs.zsh
             ];
             systemPackages = [
-              pkgs.R
               pkgs.appcleaner
               pkgs.ccache
               pkgs.cmake
@@ -56,6 +55,7 @@
               pkgs.pam-reattach
               pkgs.pnpm
               pkgs.python313Full
+              pkgs.R
               pkgs.ripgrep
               pkgs.rustup
               pkgs.slack
@@ -68,6 +68,7 @@
               pkgs.uv
               pkgs.vscode
               pkgs.wget
+              pkgs.zig
             ];
             variables = {
               EDITOR = "nvim";
@@ -232,6 +233,7 @@
               enableKeyMapping = true;
               remapCapsLockToEscape = true;
             };
+            primaryUser = "denniseum";
             stateVersion = 6;
           };
         };
