@@ -203,16 +203,21 @@
               };
               hitoolbox.AppleFnUsageType = "Change Input Source";
               loginwindow.GuestEnabled = false;
+              menuExtraClock = {
+                Show24Hour = true;
+                ShowAMPM = false;
+                ShowDate = 1;
+              };
               NSGlobalDomain = {
                 AppleEnableMouseSwipeNavigateWithScrolls = false;
                 AppleEnableSwipeNavigateWithScrolls = false;
+                AppleICUForce24HourTime = true;
                 AppleMeasurementUnits = "Centimeters";
                 AppleScrollerPagingBehavior = true;
                 AppleShowAllExtensions = true;
                 AppleShowAllFiles = false;
                 AppleSpacesSwitchOnActivate = false;
                 AppleTemperatureUnit = "Celsius";
-
               };
               WindowManager = {
                 EnableStandardClickToShowDesktop = false;
