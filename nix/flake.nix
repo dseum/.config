@@ -43,6 +43,7 @@
               pkgs.fd
               pkgs.fzf
               pkgs.go
+              pkgs.google-chrome
               pkgs.luarocks
               pkgs.mupdf
               (pkgs.neovim.override {
