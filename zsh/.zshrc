@@ -9,6 +9,7 @@ zstyle ':completion:*' select-prompt ''
 
 # Path
 export PATH="$XDG_CONFIG_HOME/bin:$PATH"
+export PATH="$HOME/Projects/external/chromium/depot_tools:$PATH"
 
 # Prompt
 PROMPT=$'%F{#787e9c}${(r:$COLUMNS::\u2500:)}%f\n%F{cyan}%B%2~%b%f\n%K{white}%F{black} %n %f%k%F{white}%f '
