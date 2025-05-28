@@ -13,38 +13,38 @@ return {
       local SpaceBlock = {
         provider = " ",
       }
-
-      local FileName = {
-        provider = function(self)
-          local filename = vim.fn.fnamemodify(self.filename, ":.")
-          if filename == "" then
-            return "[No Name]"
-          end
-          return filename
-        end,
-        hl = {
-          fg = utils.get_highlight("Directory").fg,
-          bg = utils.get_highlight("StatusLine").bg,
-        },
-      }
-      local FileNameModified = {
-        hl = function()
-          if vim.bo.modified then
-            return { fg = "cyan", force = true }
-          end
-        end,
-      }
-      local FileNameBlock = {
+      local FilenameOrRecordingBlock = {
         init = function(self)
-          self.filename = vim.api.nvim_buf_get_name(0)
+          self.filename     = vim.api.nvim_buf_get_name(0)
+          self.recording    = vim.fn.reg_recording()
+          self.is_recording = require("heirline.conditions").is_active() and self.recording ~= ""
+        end,
+        update = { "BufEnter", "BufModifiedSet", "RecordingEnter", "RecordingLeave" },
+        provider = function(self)
+          if
+              self.is_recording then
+            return "@" .. self.recording
+          end
+          local name = vim.fn.fnamemodify(self.filename, ":.")
+          if name == "" then
+            name = "[No Name]"
+          end
+          return "%<" .. name
+        end,
+        hl = function(self)
+          local base_bg = utils.get_highlight("StatusLine").bg
+          local fg, force = nil, false
+          if self.is_recording then
+            fg = "red"
+          elseif vim.bo.modified then
+            fg = "cyan"
+            force = true
+          else
+            fg = utils.get_highlight("Directory").fg
+          end
+          return { fg = fg, bg = base_bg, force = force }
         end,
       }
-      FileNameBlock = utils.insert(
-        FileNameBlock,
-        utils.insert(FileNameModified, FileName),
-        { provider = "%<" }
-      )
-
       local DiagnosticBlock = {
         init = function(self)
           self.error = {
@@ -105,10 +105,9 @@ return {
           hl = { fg = "hint", bg = utils.get_highlight("StatusLine").bg },
         },
       }
-
       require("heirline").setup({
         statusline = {
-          FileNameBlock,
+          FilenameOrRecordingBlock,
           AlignBlock,
           DiagnosticBlock,
         },

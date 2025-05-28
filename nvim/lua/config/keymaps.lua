@@ -12,8 +12,6 @@ vim.keymap.set("n", "<c-u>", "<c-u>zz")
 vim.keymap.set("x", "p", [["_dP]])                 -- Puts without filling "" register
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]]) -- Yanks into "+ register
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set("n", "q", "<Nop>")
-vim.keymap.set("n", "Q", "<Nop>")
 vim.keymap.set("n", "<c-f>", "<cmd>silent !tmux neww tmod<cr>")
 vim.keymap.set("n", "<c-g>", "<cmd>silent !tmux neww tmcd<cr>")
 vim.keymap.set("t", "<c-w>j", "<c-\\><c-n><c-w>j")
