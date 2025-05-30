@@ -172,7 +172,7 @@
                 autohide-delay = 0.0;
                 autohide-time-modifier = 0.0;
                 persistent-apps = [
-                  "/Applications/Dia.app"
+                  "/Applications/Google Chrome.app"
                   "/System/Applications/Mail.app"
                   "/System/Applications/Calendar.app"
                   "/Applications/Todoist.app"
