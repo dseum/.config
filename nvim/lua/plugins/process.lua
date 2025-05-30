@@ -1,43 +1,64 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
-    build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })()
-    end,
+    branch = "main",
+    build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
-        sync_install = false,
-        auto_install = true,
-        highlight = {
-          enable = true,
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<cr>",
-            node_incremental = "<cr>",
-            node_decremental = "<s-cr>",
-          },
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-            },
-          },
-        },
-      })
+      local langs = {
+        "bash",
+        "c",
+        "caddy",
+        "cmake",
+        "css",
+        "dart",
+        "dockerfile",
+        "fish",
+        "html",
+        "javascript",
+        "json",
+        "jsonc",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "nix",
+        "ocaml",
+        "python",
+        "rust",
+        "svelte",
+        "toml",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "yaml",
+      }
+      local ts = require("nvim-treesitter")
+      local installed = ts.get_installed("parsers")
+      local missing = {}
+      for _, lang in pairs(langs) do
+        if not vim.tbl_contains(installed, lang) then
+          table.insert(missing, lang)
+        end
+      end
+      if #missing > 0 then
+        ts.install(missing):wait(30000)
+      end
+      ts.update({ "stable", "unstable" })
+      for _, lang in pairs(langs) do
+        local fts = vim.treesitter.language.get_filetypes(lang)
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = fts,
+          callback = function(args)
+            local bufnr = args.buf
+            vim.treesitter.start(bufnr)
+            vim.bo[bufnr].syntax = "on"
+            vim.wo.foldlevel = 99
+            vim.wo.foldmethod = "expr"
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.bo[bufnr].indentexpr =
+              "v:lua.require'nvim-treesitter'.indentexpr()"
+          end,
+        })
+      end
     end,
   },
   {
@@ -161,21 +182,21 @@ return {
         if type(pkg_name) == "string" then
           -- Assume package is valid
           MasonOptional.of_nilable(pkg_name)
-              :map(function(name)
-                local ok, pkg = pcall(MasonRegistry.get_package, name)
-                if ok then
-                  return pkg
-                end
-              end)
-              :if_present(
+            :map(function(name)
+              local ok, pkg = pcall(MasonRegistry.get_package, name)
+              if ok then
+                return pkg
+              end
+            end)
+            :if_present(
               ---@param pkg Package
-                function(pkg)
-                  if not pkg:is_installed() then
-                    local _, version = MasonPackage.Parse(server_id)
-                    pkg:install({ version = version })
-                  end
+              function(pkg)
+                if not pkg:is_installed() then
+                  local _, version = MasonPackage.Parse(server_id)
+                  pkg:install({ version = version })
                 end
-              )
+              end
+            )
           server_config[1] = nil
         end
 
@@ -195,7 +216,7 @@ return {
               ["experimental/serverStatus"] = function(_, result, ctx, _)
                 if result.quiescent and not M.ran_once then
                   for _, bufnr in
-                  ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id))
+                    ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id))
                   do
                     vim.lsp.inlay_hint.enable(false, {
                       bufnr = bufnr,
@@ -334,6 +355,6 @@ return {
     "lervag/vimtex",
     init = function()
       vim.g.vimtex_view_method = "mupdf"
-    end
-  }
+    end,
+  },
 }
