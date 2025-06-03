@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
 if [[ $# -eq 1 ]]; then
-	selected_path=$1
+	query=$1
 else
-	paths=$(
-		fd . ~/.config --exact-depth 1 --type d
-		fd . ~/Projects --exact-depth 2 --type d
-		fd . ~/Projects/courses --exact-depth 2 --type d
-		fd . ~/Projects/external --exact-depth 2 --type d
-	)
-	selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
-	selected_path=${selected_path%/}
+	query=""
 fi
+
+paths=$(
+	fd . ~/.config --exact-depth 1 --type d
+	fd . ~/Projects --exact-depth 2 --type d
+	fd . ~/Projects/courses --exact-depth 2 --type d
+	fd . ~/Projects/external --exact-depth 2 --type d
+)
+selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2 --query "$query" --select-1)
+selected_path=${selected_path%/}
 
 if [[ -z $selected_path ]]; then
 	exit 0

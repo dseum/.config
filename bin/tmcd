@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [[ $# -eq 1 ]]; then
+	query=$1
+else
+	query=""
+fi
+
 paths=$(
 	echo "$HOME/.config/"
 	echo "$HOME/Projects/"
@@ -7,7 +13,7 @@ paths=$(
 	fd . ~/Projects/courses --exact-depth 1 --type d
 	fd . ~/Projects/external --exact-depth 1 --type d
 )
-selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2)
+selected_path=$(echo "$paths" | fzf --delimiter / --with-nth -3,-2 --query "$query" --select-1)
 selected_path=${selected_path%/}
 
 if [[ -z $selected_path ]]; then
