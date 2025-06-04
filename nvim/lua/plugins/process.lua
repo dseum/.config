@@ -45,7 +45,6 @@ return {
       if #missing > 0 then
         ts.install(missing):wait(30000)
       end
-      ts.update({ "stable", "unstable" })
       for _, lang in pairs(langs) do
         local fts = vim.treesitter.language.get_filetypes(lang)
         vim.api.nvim_create_autocmd("FileType", {
