@@ -154,7 +154,6 @@ return {
           },
         },
         ocamllsp = {},
-        r_language_server = { "r-languageserver" },
         ruff = { "ruff" },
         rust_analyzer = { "rust-analyzer" },
         svelte = { "svelte-language-server" },
