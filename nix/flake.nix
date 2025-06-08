@@ -55,7 +55,6 @@
               pkgs.rustup
               pkgs.slack
               pkgs.spotify
-              pkgs.telegram-desktop
               pkgs.tex-fmt
               pkgs.texliveFull
               pkgs.tmux
