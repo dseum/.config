@@ -50,6 +50,7 @@
               pkgs.pam-reattach
               pkgs.pnpm
               pkgs.python313Full
+              pkgs.qemu
               pkgs.R
               pkgs.ripgrep
               pkgs.rustup
