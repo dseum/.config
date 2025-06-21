@@ -329,21 +329,6 @@ return {
     },
   },
   {
-    "github/copilot.vim",
-    init = function()
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_filetypes = {
-        oil = false,
-      }
-    end,
-    config = function()
-      vim.keymap.set("i", "<S-Tab>", [[copilot#Accept("")]], {
-        expr = true,
-        replace_keycodes = false,
-      })
-    end,
-  },
-  {
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
