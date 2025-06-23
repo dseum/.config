@@ -42,6 +42,7 @@ shift + lalt - m : yabai -m space --layout $(yabai -m query --spaces --space | j
 shift + lalt - 1 : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 0" --new-window
 shift + lalt - 2 : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 1" --new-window
 shift + lalt - 3 : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 2" --new-window
+shift + lalt - 4 : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --profile-directory="Profile 3" --new-window
 shift + lalt - e : open -na /Applications/Ghostty.app
 
 ctrl + lalt - q : yabai --stop-service
